@@ -4,17 +4,17 @@ import './normalPage.css'
 import NormalUserLayout from './normalUserLayout';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-import { list } from './programmeList'
+import { locationList } from './locationList'
 
 const NormalUser = () => {
 
-    const [programmes, setProgrammes] = useState(list);
+    const [programmes, setProgrammes] = useState(locationList);
     const [search, setSearch] = useState('');
     const [order, setOrder] = useState("Asc")
 
     const sort = (column) => {
         if (order === "Asc") {
-            const sorted = list.sort((a, b) => {
+            const sorted = locationList.sort((a, b) => {
                 return a[column] > b[column] ? 1 : -1
             })
             setProgrammes(sorted)
@@ -22,7 +22,7 @@ const NormalUser = () => {
         }
 
         if (order === "Dsc") {
-            const sorted = list.sort((a, b) => {
+            const sorted = locationList.sort((a, b) => {
                 return a[column] < b[column] ? 1 : -1
             })
             setProgrammes(sorted)
@@ -74,7 +74,7 @@ const NormalUser = () => {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {list
+                                            {locationList
                                                 .filter((item) => {
                                                     return search.toLowerCase() === ''
                                                         ? item

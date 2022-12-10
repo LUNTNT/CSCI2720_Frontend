@@ -1,4 +1,4 @@
-export const list = [
+export const locationList = [
     {
         id: 1,
         location: "shaw",
