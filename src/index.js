@@ -7,9 +7,9 @@ import {
   Link,
 } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import Login from './screens/Login/login'
 import NormalUser from "./screens/Home/normal/normalUser";
+import Location from "./screens/Home/normal/location";
 
 
 export default function App () {
@@ -22,8 +22,8 @@ export default function App () {
         {/* first page is login, so add "index" */}
 
         <Route index element={<Login/>}/> 
-
         <Route path="/user" element={<NormalUser/>}/>
+        <Route path="/location" element={<Location/>}/>
 
       </Routes>
     </BrowserRouter>
