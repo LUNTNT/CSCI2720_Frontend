@@ -23,7 +23,7 @@ export default function App () {
 
         <Route index element={<Login/>}/> 
         <Route path="/user" element={<NormalUser/>}/>
-        <Route path="/location:id" element={<Location/>}/>
+        <Route path="/location/:id" element={<Location/>}/>
 
       </Routes>
     </BrowserRouter>

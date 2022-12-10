@@ -85,7 +85,7 @@ const NormalUser = () => {
                                                         <td width="10%" className="text-body">{item.id}</td>
                                                         <td width="45%">
                                                             <p className="m-0 d-inline-block align-middle font-16">
-                                                                <a href="/location:id" className="text-body text-decoration-none">{item.location}</a>
+                                                                <a href={"/location/" + item.id} className="text-body text-decoration-none">{item.location}</a>
                                                             </p>
                                                         </td>
                                                         <td width="45%" className="text-body">{item.noofevent}</td>
