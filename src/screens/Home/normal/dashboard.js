@@ -8,7 +8,7 @@ import { locationList } from './locationList'
 import { Navigate, redirect } from "react-router-dom";
 import { useNavigate } from "react-router-dom"
 
-const NormalUser = () => {
+const Dashboard = () => {
 
     const [programmes, setProgrammes] = useState(locationList);
     const [search, setSearch] = useState('');
@@ -64,7 +64,7 @@ const NormalUser = () => {
                                     </div>
                                     <div className='col-sm-7'>
                                         <div className='page-title-right page-title'>
-                                            <button type="button" className="btn btn-light mb-2 me-1">Show Events on Map</button>
+                                            <button type="button" className="btn btn-light mb-2 me-1" onClick={() => navigate("/allevent")}>Show Events on Map</button>
                                         </div>
                                     </div>
                                 </div>
@@ -129,4 +129,4 @@ const NormalUser = () => {
 
 }
 
-export default NormalUser;
+export default Dashboard;

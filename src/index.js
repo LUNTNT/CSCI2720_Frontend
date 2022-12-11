@@ -10,7 +10,8 @@ import {
 } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './screens/Login/login'
-import NormalUser from "./screens/Home/normal/normalUser";
+import Dashboard from "./screens/Home/normal/dashboard";
+import EventMap from "./screens/Home/normal/eventMap";
 import Location from "./screens/Home/normal/location";
 
 
@@ -25,7 +26,8 @@ export default function App() {
         <Route path="/" index element={<Navigate to="login" />} />
         <Route path="login" index element={<Login/>} />
 
-        <Route path="dashboard" element={<NormalUser />} />
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="allevent" element={<EventMap />} />
 
         <Route path="location/:id" element={<Location />} />
 
