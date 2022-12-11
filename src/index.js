@@ -5,6 +5,8 @@ import {
   Routes,
   Route,
   Link,
+  Redirect,
+  Navigate
 } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './screens/Login/login'
@@ -12,7 +14,7 @@ import NormalUser from "./screens/Home/normal/normalUser";
 import Location from "./screens/Home/normal/location";
 
 
-export default function App () {
+export default function App() {
   return (
 
     <BrowserRouter>
@@ -20,10 +22,12 @@ export default function App () {
       <Routes>
         {/* add path here */}
         {/* first page is login, so add "index" */}
+        <Route path="/" index element={<Navigate to="login" />} />
+        <Route path="login" index element={<Login/>} />
 
-        <Route index element={<Login/>}/> 
-        <Route path="/user" element={<NormalUser/>}/>
-        <Route path="/location/:id" element={<Location/>}/>
+        <Route path="dashboard" element={<NormalUser />} />
+
+        <Route path="location/:id" element={<Location />} />
 
       </Routes>
     </BrowserRouter>
