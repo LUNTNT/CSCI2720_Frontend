@@ -6,8 +6,29 @@ const Login = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
   
-    const onLogin = () => {
-        console.log("login")
+    async function onLogin(event) {
+        console.log("Attempted to login")
+        // event.preventDefault()
+        // const response = await fetch('http://localhost:1337/api/login', {
+		// 	method: 'POST',
+		// 	headers: {
+		// 		'Content-Type': 'application/json',
+		// 	},
+		// 	body: JSON.stringify({
+		// 		username,
+		// 		password,
+		// 	}),
+		// })
+
+		// const data = await response.json()
+
+		// if (data.user) {
+		// 	localStorage.setItem('authenticated', data.user)
+		// 	alert('Login successful')
+		// 	window.location.href = '/homepage'
+		// } else {
+		// 	alert('Please check your username and password')
+		// }
     }
 
     return (
