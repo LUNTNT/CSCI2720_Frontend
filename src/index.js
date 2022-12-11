@@ -24,16 +24,15 @@ export default function App() {
         {/* add path here */}
         {/* first page is login, so add "index" */}
         <Route path="/" index element={<Navigate to="login" />} />
-        <Route path="login" index element={<Login/>} />
+        <Route path="/login" index element={<Login/>} />
         
         <Route path="/admin" element={<Admin/>}/>
         <Route path="/admin/event" element={<Admin/>}/>
         <Route path="/admin/user" element={<Admin/>}/>
         
-        <Route path="dashboard" element={<Dashboard />} />
-        <Route path="allevent" element={<EventMap />} />
-
-        <Route path="location/:id" element={<Location />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard/location/:id" element={<Location />} />
+        <Route path="/allevent" element={<EventMap />} />
 
       </Routes>
     </BrowserRouter>

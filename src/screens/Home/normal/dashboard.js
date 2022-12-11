@@ -5,7 +5,6 @@ import NormalUserLayout from './normalUserLayout';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { locationList } from './locationList'
-import { Navigate, redirect } from "react-router-dom";
 import { useNavigate } from "react-router-dom"
 
 const Dashboard = () => {
@@ -14,6 +13,7 @@ const Dashboard = () => {
     const [search, setSearch] = useState('');
     const [order, setOrder] = useState("Asc")
     const [authenticated, setauthenticated] = useState(null);
+    const navigate = useNavigate()
 
     const sort = (column) => {
         if (order === "Asc") {
@@ -32,10 +32,6 @@ const Dashboard = () => {
             setOrder("Asc")
         }
     }
-
-    let navigate = useNavigate()
-
-
 
     useEffect(() => {
         // token = "authenticated"
@@ -106,7 +102,7 @@ const Dashboard = () => {
                                                             <td width="10%" className="text-body">{item.id}</td>
                                                             <td width="45%">
                                                                 <p className="m-0 d-inline-block align-middle font-16">
-                                                                    <a href={"location/" + item.id}  className="text-body text-decoration-none" >{item.location}</a>
+                                                                    <a href={"/dashboard/location/" + item.id}  className="text-body text-decoration-none" >{item.location}</a>
                                                                     {/* <a onClick={() => navigate("./location/" + item.id)} className="text-body text-decoration-none" >{item.location}</a> */}
                                                                 </p>
                                                             </td>
