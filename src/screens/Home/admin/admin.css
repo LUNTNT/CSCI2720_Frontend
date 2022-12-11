@@ -1,0 +1,83 @@
+.two-column {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.firstCol {
+    width: 15%
+}
+
+.secondCol {
+    width: 70%;
+}
+
+.menuCollapseBtn {
+    background-color: transparent;
+    font-size: 30px;
+}
+
+.addEventBtn {
+    background-color: rgba(84, 41, 255, 1);
+    box-shadow: 3px 3px 5px black;
+}
+
+.logOutBtn {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    border-radius: 3em;
+    font-size: 18px;
+    background-color: rgba(84, 41, 255, 1);
+    padding: 10px 20px 10px 20px;
+}
+
+.dashboardWrapper {
+    margin: 5% 0 0 5%;
+    width: 90%;
+}
+
+.welcomeAdmin {
+    font-weight: 750;
+}
+
+.tableWrapper {
+    margin-top: 10%;
+    margin-left: 5%;
+}
+
+/**
+ *  ProSidebar
+ */
+
+.pro-sidebar {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+}
+
+.pro-sidebar > .pro-sidebar-inner {
+    background-color: rgba(84, 41, 255, 1) !important;
+    height: 100vh !important;
+}
+
+.pro-sidebar.collapsed {
+    width: 60px !important;
+    min-width: 60px !important; 
+}
+
+.pro-sidebar > .pro-sidebar-inner > .pro-sidebar-layout .pro-sidebar-header {
+    border-bottom: none !important;
+}
+
+.pro-sidebar .pro-menu {
+    position: relative;
+    top: 25vh;
+    padding-left: 50px;
+}
+
+.pro-sidebar .pro-menu .pro-menu-item > .pro-inner-item > .pro-item-content > a{
+    text-align: left;
+    color: #fff;
+    font-size: 20px;
+}

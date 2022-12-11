@@ -10,7 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Login from './screens/Login/login'
 import NormalUser from "./screens/Home/normal/normalUser";
 import Location from "./screens/Home/normal/location";
-
+import Admin from "./screens/Home/admin/admin"
 
 export default function App () {
   return (
@@ -24,7 +24,10 @@ export default function App () {
         <Route index element={<Login/>}/> 
         <Route path="/user" element={<NormalUser/>}/>
         <Route path="/location/:id" element={<Location/>}/>
-
+        <Route path="/admin" element={<Admin/>}/>
+        <Route path="/admin/event" element={<Admin/>}/>
+        <Route path="/admin/user" element={<Admin/>}/>
+        
       </Routes>
     </BrowserRouter>
   );
