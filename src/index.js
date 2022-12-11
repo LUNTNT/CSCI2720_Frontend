@@ -25,8 +25,6 @@ export default function App() {
         {/* first page is login, so add "index" */}
         <Route path="/" index element={<Navigate to="login" />} />
         <Route path="login" index element={<Login/>} />
-
-        <Route path="/user" element={<NormalUser/>}/>
         
         <Route path="/admin" element={<Admin/>}/>
         <Route path="/admin/event" element={<Admin/>}/>
