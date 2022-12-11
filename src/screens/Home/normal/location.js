@@ -35,7 +35,7 @@ const Location = () => {
                         <Tabs defaultActiveKey="event" id="location-info" className="mb-3">
                             <Tab eventKey="event" title="Events" >
                                 <Card className='my-2'>
-                                    {eventList.map((item, index)=>(<Card.Header>{item.event}</Card.Header>))}
+                                    {eventList[id-1].event.map((item, index)=>(<Card.Header>{item}</Card.Header>))}
                                 </Card>
                             </Tab>
                             <Tab eventKey="comment" title="Comment">
