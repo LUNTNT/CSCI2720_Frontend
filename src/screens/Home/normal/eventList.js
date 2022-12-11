@@ -7,15 +7,15 @@ export const eventList = [
     },
     {   
         id: locationList[1].id,
-        event:["Shaw Sing","Shawlane",]
+        event:["Na Sing","NA lane",]
     },
     {   
         id: locationList[2].id,
-        event:["Shaw Sing","Shawlane",]
+        event:["UC Sing","UC lane",]
     },
     {   
         id: locationList[3].id,
-        event:["Shaw Sing","Shawlane",]
+        event:["MC Sing","MC lane",]
     },
 
 
