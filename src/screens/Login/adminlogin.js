@@ -1,11 +1,13 @@
 import React from 'react';
 import { useContext, useEffect, useState } from "react";
 import '../../style.css'
+import { useNavigate } from "react-router-dom"
 
 const AdminLogin = () => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-  
+    const navigate = useNavigate()
+
     
     async function onLogin(event) {
         console.log("Attempted to login")
@@ -27,7 +29,7 @@ const AdminLogin = () => {
         // {
 		// 	localStorage.setItem('authenticated', data.user)
 		// 	alert('Login successful')
-        //  navigate('/admin', {replace: true})
+         navigate('/admin', {replace: true})
 		// } 
         // else {
 		// 	alert('Please check your username and password')

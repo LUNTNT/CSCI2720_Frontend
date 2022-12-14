@@ -7,7 +7,7 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { locationList } from './locationList';
 import { Routes, Route, useParams } from 'react-router-dom';
-import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
+import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 import { useMemo } from "react";
 
 
@@ -18,7 +18,7 @@ const Location = () => {
     const newComment = ""
 
     const { isLoaded } = useLoadScript({
-        googleMapsApiKey: "AIzaSyBnVFtiHwLutAF-tfo56eADtLxrTvt4foM",
+        googleMapsApiKey: "AIzaSyABIKgNc0JoZpd9QgYlVQ9hudOk90uN1Wk",
     });
 
     function changeFav() {
@@ -45,14 +45,39 @@ const Location = () => {
     }
 
     function Map() {
-        const center = useMemo(() => ({ lat: 22.427322578021947, lng: 114.20904766996247 }), []);
+        const center = useMemo(() => ({ lat: locationList[id - 1].coordinate.lat, lng: locationList[id - 1].coordinate.lng }), []);
         return (
-            <GoogleMap zoom={15} center={center} mapContainerClassName="map-container" >
+            <GoogleMap
+                zoom={15}
+                center={center}
+                mapContainerClassName="map-container"
+                className="w-100 h-100"
+                options={{
+                    zoomControl: false,
+                    streetViewControl: false,
+                    mapTypeControl: false,
+                    fullscreenControl: false,
+                }}
+            >                
                 <Marker
                     key={locationList[id - 1].id}
-                    position={{ lat: locationList[id - 1].latitude, lng: locationList[id - 1].longitude }}
+                    position={{ lat: locationList[id - 1].coordinate.lat, lng: locationList[id - 1].coordinate.lng }}
                 >
                 </Marker>
+
+                <InfoWindow
+                    position={locationList[id-1].coordinate}
+                    options={{
+                        pixelOffset: new window.google.maps.Size(0, -50),
+                    }}
+                >
+                    <div>
+                        <div>Location: {locationList[id-1].location}</div>
+                        {/* <br/>
+                        <a href={"/dashboard/location/" + locationList[id-1].id}>Show events</a> */}
+                    </div>
+                </InfoWindow>
+
             </GoogleMap>
         )
 
