@@ -2,7 +2,7 @@ import React from 'react';
 import { useContext, useEffect, useState } from "react";
 import '../../style.css'
 
-const Login = () => {
+const UserLogin = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
   
@@ -25,7 +25,7 @@ const Login = () => {
 		// if (data.user) {
 		// 	localStorage.setItem('authenticated', data.user)
 		// 	alert('Login successful')
-		// 	window.location.href = '/homepage'
+		// 	window.location.href = '/dashboard'
 		// } else {
 		// 	alert('Please check your username and password')
 		// }
@@ -55,7 +55,12 @@ const Login = () => {
                                 <label className="form-label" style={{color: "#344054"}}>Password:</label>
                                 <input onChange={text => setPassword(text)} value={password} name="password" type="password" className="form-control form-control-lg" placeholder="Enter your password" style={{borderRadius:"0.5rem"}}/>
                             </div>       
-                            <div className='text-center pt-1 mt-5 pb-1'>
+                            <div className='text-center pt-1 mt-4' >
+                               <span style={{color: "#667085"}}>
+                               Admin? Click <a href='/login/admin'>here</a> to Login.                               
+                               </span>
+                            </div>
+                            <div className='text-center pt-1 mt-4 pb-1' >
                                 <button type='button' className="btn btn-block btn-primary w-100 buttonColor" style={{borderRadius:"0.5rem"}} onClick={onLogin()}>
                                     Sign In
                                 </button>
@@ -69,4 +74,4 @@ const Login = () => {
 }
 
 
-export default Login;
+export default UserLogin;

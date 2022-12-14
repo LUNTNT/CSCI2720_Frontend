@@ -9,11 +9,12 @@ import {
   Navigate
 } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Login from './screens/Login/login'
+import UserLogin from './screens/Login/userlogin'
 import Dashboard from "./screens/Home/normal/dashboard";
 import EventMap from "./screens/Home/normal/eventMap";
 import Location from "./screens/Home/normal/location";
 import Admin from "./screens/Home/admin/admin"
+import AdminLogin from './screens/Login/adminlogin'
 
 export default function App() {
   return (
@@ -23,9 +24,12 @@ export default function App() {
       <Routes>
         {/* add path here */}
         {/* first page is login, so add "index" */}
-        <Route path="/" index element={<Navigate to="login" />} />
-        <Route path="/login" index element={<Login/>} />
+        <Route path="/" index element={<Navigate to="/login/user" />} />
+        <Route path="/login/user" index element={<UserLogin/>} />
+        <Route path="/login/admin" index element={<AdminLogin/>} />
         
+
+
         <Route path="/admin" element={<Admin/>}/>
         <Route path="/admin/event" element={<Admin/>}/>
         <Route path="/admin/user" element={<Admin/>}/>
