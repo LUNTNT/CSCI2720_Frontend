@@ -32,9 +32,37 @@
     border: 1px solid transparent;
     padding: 0.45rem 0.9rem;
     font-size: 0.9rem;
-    border-radius: 0.15rem;
+    border-radius: 0.15rem !important;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: rgba(84, 41, 255, 1);
+    border-color: rgba(84, 41, 255, 1); /*set the color you want here*/
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active, .open>.dropdown-toggle.btn-primary {
+    color: #fff;
+    background-color: rgba(84, 41, 255, 1);
+    border-color: rgba(84, 41, 255, 1); /*set the color you want here*/
+    text-decoration: underline;
+
+}
+
+.button-color {
+    background-color: rgba(84, 41, 255, 1);
+    color: white
 }
 
 .text-body {
     color: #6c757d !important;
 }
+
+a:link {
+    text-decoration: none;
+  }
+
+a:hover {
+    text-decoration: underline;
+}
+  

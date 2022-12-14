@@ -60,7 +60,7 @@ const Dashboard = () => {
                                     </div>
                                     <div className='col-sm-7'>
                                         <div className='page-title-right page-title'>
-                                            <button type="button" className="btn btn-light mb-2 me-1" onClick={() => navigate("/allevent")}>Show Events on Map</button>
+                                            <button type="button" className="btn btn-primary mb-2 me-1" onClick={() => navigate("/allevent")}>Show Events on Map</button>
                                         </div>
                                     </div>
                                 </div>
@@ -102,7 +102,7 @@ const Dashboard = () => {
                                                             <td width="10%" className="text-body">{item.id}</td>
                                                             <td width="45%">
                                                                 <p className="m-0 d-inline-block align-middle font-16">
-                                                                    <a href={"/dashboard/location/" + item.id}  className="text-body text-decoration-none" >{item.location}</a>
+                                                                    <a href={"/dashboard/location/" + item.id}  className="text-body" >{item.location}</a>
                                                                     {/* <a onClick={() => navigate("./location/" + item.id)} className="text-body text-decoration-none" >{item.location}</a> */}
                                                                 </p>
                                                             </td>

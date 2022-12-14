@@ -1,15 +1,17 @@
 import React from 'react';
 import { useContext, useEffect, useState } from "react";
 import '../../style.css'
+import { useNavigate } from "react-router-dom"
 
 const UserLogin = () => {
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
-  
-    async function onLogin(event) {
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+    const navigate = useNavigate()
+
+    function onLogin(event) {
         console.log("Attempted to login")
         // event.preventDefault()
-        // const response = await fetch('http://localhost:1337/api/login', {
+        // const response = await fetch('http://localhost:3000/login/user', {
 		// 	method: 'POST',
 		// 	headers: {
 		// 		'Content-Type': 'application/json',
@@ -22,13 +24,16 @@ const UserLogin = () => {
 
 		// const data = await response.json()
 
-		// if (data.user) {
+		// if (data.user) 
+        // {
 		// 	localStorage.setItem('authenticated', data.user)
 		// 	alert('Login successful')
-		// 	window.location.href = '/dashboard'
-		// } else {
+         navigate('/dashboard', {replace: true})
+		// } 
+        // else {
 		// 	alert('Please check your username and password')
 		// }
+
     }
 
     return (
@@ -45,15 +50,16 @@ const UserLogin = () => {
                             <h3 style={{color: "#344054"}}>Culture Programmes</h3>
                             <h6 style={{color: "#667085"}}>Please fill your detail to access your account.</h6>
                         </div>
+
                         <form>
                             <div className="form-outline mb-4">
                                 <label className="form-label" style={{color: "#344054"}}>Username:</label>
-                                <input onChange={text => setUsername(text)} value={username} name="username" type="text" className="form-control form-control-lg" placeholder="Enter your username" style={{borderRadius:"0.5rem"}}/>
+                                <input onChange={(text) => setUsername(text.target.value)} value={username} name="username" type="text" className="form-control form-control-lg" placeholder="Enter your username" style={{borderRadius:"0.5rem"}}/>
                             </div>
 
                             <div className="form-outline mb-3">
                                 <label className="form-label" style={{color: "#344054"}}>Password:</label>
-                                <input onChange={text => setPassword(text)} value={password} name="password" type="password" className="form-control form-control-lg" placeholder="Enter your password" style={{borderRadius:"0.5rem"}}/>
+                                <input onChange={(text) => setPassword(text.target.value)} value={password} name="password" type="password" className="form-control form-control-lg" placeholder="Enter your password" style={{borderRadius:"0.5rem"}}/>
                             </div>       
                             <div className='text-center pt-1 mt-4' >
                                <span style={{color: "#667085"}}>
@@ -61,7 +67,7 @@ const UserLogin = () => {
                                </span>
                             </div>
                             <div className='text-center pt-1 mt-4 pb-1' >
-                                <button type='button' className="btn btn-block btn-primary w-100 buttonColor" style={{borderRadius:"0.5rem"}} onClick={onLogin()}>
+                                <button type='button' className="btn btn-block btn-primary w-100 buttonColor" style={{borderRadius:"0.5rem"}} onClick={(e)=> {onLogin()}}>
                                     Sign In
                                 </button>
                             </div>
