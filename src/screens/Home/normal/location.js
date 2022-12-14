@@ -6,7 +6,6 @@ import '../../../style.css'
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { locationList } from './locationList';
-import { eventList } from './eventList'
 import { Routes, Route, useParams } from 'react-router-dom';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 import { useMemo } from "react";
@@ -94,7 +93,7 @@ const Location = () => {
                         <Tabs defaultActiveKey="event" id="location-info" className="mb-3">
                             <Tab eventKey="event" title="Events" >
                                 <Card className='my-2'>
-                                    {eventList[id - 1].event.map((item, index) => (<Card.Header>{item}</Card.Header>))}
+                                    {locationList[id - 1].event.map((item, index) => (<Card.Header>{item}</Card.Header>))}
                                 </Card>
                             </Tab>
                             <Tab eventKey="comment" title="Comment">

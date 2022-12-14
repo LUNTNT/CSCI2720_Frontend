@@ -4,12 +4,14 @@ import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 import { useMemo } from "react";
 import { locationList } from './locationList';
 import NormalUserLayout from './normalUserLayout';
+import { useNavigate } from "react-router-dom"
 
 const EventMap = () => {
 
     const { isLoaded } = useLoadScript({
         googleMapsApiKey: "AIzaSyBnVFtiHwLutAF-tfo56eADtLxrTvt4foM",
     });
+    const navigate = useNavigate()
 
     if (!isLoaded) return <div>Loading...</div>;
     return <Map />;
@@ -26,6 +28,7 @@ const EventMap = () => {
                             <Marker
                                 key={locationList.id}
                                 position={{ lat: locationList.latitude, lng: locationList.longitude }}
+                                onClick={() => {navigate("/dashboard/location/" + locationList.id);}}
                             >
                             </Marker>
                         )
