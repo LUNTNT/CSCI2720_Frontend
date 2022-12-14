@@ -40,7 +40,7 @@ const AdminLogin = () => {
                 <div className='row justify-content-center align-items-center h-100'>
                 
                     <div className='col-md-9 col-lg-6 col-xl-6 my-lg-5 py-lg-5'>
-                        <img src={require("../../image/login.png")} className="img-fluid" style={{borderRadius:"1.5rem"}}></img>
+                        <img src={require("../../image/admin.png")} className="img-fluid" style={{borderRadius:"1.5rem"}}></img>
                     </div>
 
                     <div className="col-md-8 col-lg-6 col-xl-5 offset-xl-1 my-lg-5 py-lg-5 mt-3">

@@ -55,10 +55,10 @@ const Dashboard = () => {
                         <div className='col-12'>
                             <div className='page-title-box'>
                                 <div className='row mb-2'>
-                                    <div className='col-sm-5'>
+                                    <div className='col-6 col-sm-6'>
                                         <div className='page-title'>Location List</div>
                                     </div>
-                                    <div className='col-sm-7'>
+                                    <div className='col-6 col-sm-6'>
                                         <div className='page-title-right page-title'>
                                             <button type="button" className="btn btn-primary mb-2 me-1" onClick={() => navigate("/allevent")}>Show Events on Map</button>
                                         </div>
@@ -85,7 +85,7 @@ const Dashboard = () => {
                                         <table className="table table-centered w-100 nowrap">
                                             <thead className="table-light">
                                                 <tr className="all" style={{ width: "20px" }}>
-                                                    <th className="text-body">No.</th>
+                                                    <th className="text-body" style={{ cursor: "pointer" }} onClick={() => sort("id")}>No.</th>
                                                     <th className="text-body">Location</th>
                                                     <th className="text-body" style={{ cursor: "pointer" }} onClick={() => sort("noofevent")}>Number of Events</th>
                                                 </tr>
