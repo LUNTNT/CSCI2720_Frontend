@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
-import { MdDelete, MdUpdate } from 'react-icons/md';
+import { MdDelete, MdEdit } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
 
 const User = () => {
@@ -60,14 +60,14 @@ const User = () => {
                                             <td>{item.username}</td>
                                             <td>{item.password}</td>
                                             <td>
+                                                <Link to={'/admin/updateUser/' + item.id}>
+                                                    <span className="action">
+                                                        <MdEdit />
+                                                    </span>
+                                                </Link>
                                                 <span className="action" onClick={ () => deleteUser(item.id) }>
                                                     <MdDelete />
                                                 </span>
-                                                <Link to={'/admin/updateUser/' + item.id}>
-                                                    <span className="action">
-                                                        <MdUpdate />
-                                                    </span>
-                                                </Link>
                                             </td>
                                         </tr>
                                     ))

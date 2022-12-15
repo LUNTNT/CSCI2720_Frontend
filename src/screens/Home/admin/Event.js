@@ -4,7 +4,7 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
-import { MdDelete, MdUpdate } from 'react-icons/md';
+import { MdDelete, MdEdit } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Event = () => {
@@ -79,14 +79,14 @@ const Event = () => {
                                                 <div class="table-cell">{item.pricee}</div>
                                             </td>
                                             <td>
+                                                <Link to={'/admin/updateEvent/' + item.id}>
+                                                    <span className="action">
+                                                        <MdEdit />
+                                                    </span>
+                                                </Link>
                                                 <span style={{ cursor: "pointer", color: "grey" }} onClick={ () => deleteEvent(item.id) }>
                                                     <MdDelete />
                                                 </span>
-                                                <Link to={'/admin/updateEvent/' + item.id}>
-                                                    <span className="action">
-                                                        <MdUpdate />
-                                                    </span>
-                                                </Link>
                                             </td>
                                         </tr>
                                     ))
