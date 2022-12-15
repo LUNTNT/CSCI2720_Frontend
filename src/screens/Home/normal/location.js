@@ -36,19 +36,22 @@ const Location = () => {
     const handleShowCommentBox = () => setShowCommentBox(true);
 
 
-    const handleSubmitComment = async () => {
+    const handleSubmitComment = () => {
         // const jwt = localStorage.getItem('jwt')
-        const response = await fetch(`http://18.209.252.141:13000/comment/1/${id}`, {
+        console.log(comment)
+        const response = fetch(`http://18.209.252.141:13000/comment/2/${id}`, {
             method: 'POST',
+            mode: 'cors',
             headers: {
-                'Content-Type': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: comment
+            body: {content: comment}
         })
-        const data = await response.json()
-
+        // const data = response.json()
+        response.then((res) => {
+            console.log("result", res)
+        })
         // if (data.ok) {
-            console.log("result", data)
         // }
         // refresh page
         // window.location.reload(false)
@@ -226,7 +229,7 @@ const Location = () => {
                                         onChange={
                                             (e) => {
                                                 setComment(e.target.value)
-                                            }}
+                                        }}
                                     />
                                 </InputGroup>
 

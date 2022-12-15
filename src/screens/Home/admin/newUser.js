@@ -38,7 +38,7 @@ const NewUser = () => {
     return (
         <>
             <div className="two-column">
-                <div className="firstCol" style={ collapsed ? { width: "10%"} : { width : "15%" } }>
+                <div className="firstCol" style={ collapsed ? { width: "10%"} : { width : "20%" } }>
                     <AdminLayout 
                         collapsed={collapsed}
                         handleCollapseChange={handleCollapseChange}
