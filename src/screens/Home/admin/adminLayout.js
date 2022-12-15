@@ -12,23 +12,30 @@ import {
     SidebarHeader
 } from 'react-pro-sidebar';
 
-const AdminLayout = () => {
-    const [collapsed, setCollapsed] = useState(false);
+const AdminLayout = ({
+    collapsed,
+    toggled,
+    handleCollapseChange,
+    handleToggleSidebar
+}) => {
 
     return (
         <>
             <ProSidebar
                 collapsed={collapsed}
+                toggled={toggled}
+                onToggle={handleToggleSidebar}
+                breakpoint="md"
             >
                 <SidebarHeader>
                     {collapsed ? 
                     <Button 
                         className="menuCollapseBtn"
-                        onClick={() => setCollapsed(false)}
+                        onClick={handleCollapseChange}
                     ><AiOutlineMenuUnfold /></Button> : 
                     <Button 
                         className="menuCollapseBtn"
-                        onClick={() => setCollapsed(true)}
+                        onClick={handleCollapseChange}
                     ><AiOutlineMenuFold /></Button>}
                 </SidebarHeader>
                 <SidebarContent>

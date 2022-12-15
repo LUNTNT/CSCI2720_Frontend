@@ -1,15 +1,31 @@
-import React from 'react';
+import React, { useState, useEffect }from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
 import { eventList } from './EventList';
-import { MdDelete } from 'react-icons/md';
+import { MdDelete, MdUpdate } from 'react-icons/md';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Event = () => {
-    function deleteEvent() {
+    const [event, setEvent] = useState([]);
 
+    useEffect(() => {
+        fetch(`http://18.209.252.141:13000/event`)
+        .then((res) => res.json())
+        .then((data) => {
+            setEvent(data);
+        })
+    }, [])
+
+    function deleteEvent(id) {
+        fetch(`http://18.209.252.141:13000/event/${id}`, {
+            method: 'DELETE'
+        })
+        .then((res) => {
+            window.location.reload();
+        })
     }
 
     return (
@@ -26,7 +42,7 @@ const Event = () => {
                     <Card.Body>
                         <Row>
                             <Col sm="5">
-                                <Button className="addEventBtn">Add Event</Button>
+                                <Link to="/admin/newEvent"><Button className="addEventBtn">Add Event</Button></Link>
                             </Col>
                         </Row>
                         <Table responsive width={"100%"}>
@@ -42,19 +58,36 @@ const Event = () => {
                                 </tr>
                             </thead>
                             <tbody>
-                                {eventList
+                                {event
                                     .map((item, index) => (
                                         <tr key={index}>
-                                            <td style={{ alignItems: "center" }}>{item.title}</td>
-                                            <td>{item.venue}</td>
-                                            <td>{item.date}</td>
-                                            <td>{item.description}</td>
-                                            <td>{item.presenter}</td>
-                                            <td>{item.price}</td>
                                             <td>
-                                                <span style={{ cursor: "pointer", color: "grey" }} onClick={ () => deleteEvent('hi') }>
+                                                <div class="table-cell">{item.titlee}</div>
+                                            </td>
+                                            <td>
+                                                <div class="table-cell">{item.venueid.venuee}</div>
+                                            </td>
+                                            <td>
+                                                <div class="table-cell">{item.predateE}</div>
+                                            </td>
+                                            <td>
+                                                <div class="table-cell">{item.desce}</div>
+                                            </td>
+                                            <td>
+                                                <div class="table-cell">{item.presenterorge}</div>
+                                            </td>
+                                            <td>
+                                                <div class="table-cell">{item.pricee}</div>
+                                            </td>
+                                            <td>
+                                                <span style={{ cursor: "pointer", color: "grey" }} onClick={ () => deleteEvent(item.id) }>
                                                     <MdDelete />
                                                 </span>
+                                                <Link to={'/admin/updateEvent/' + item.id}>
+                                                    <span className="action">
+                                                        <MdUpdate />
+                                                    </span>
+                                                </Link>
                                             </td>
                                         </tr>
                                     ))

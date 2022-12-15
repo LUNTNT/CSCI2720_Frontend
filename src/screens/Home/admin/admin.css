@@ -5,11 +5,13 @@
 }
 
 .firstCol {
-    width: 15%
+    width: 15%;
+    transition: all 0.3s;
 }
 
 .secondCol {
-    width: 70%;
+    width: 80%;
+    transition: all 0.3s;
 }
 
 .menuCollapseBtn {
@@ -17,7 +19,7 @@
     font-size: 30px;
 }
 
-.addEventBtn {
+.addEventBtn, .addUserBtn {
     background-color: rgba(84, 41, 255, 1);
     box-shadow: 3px 3px 5px black;
 }
@@ -26,14 +28,14 @@
     position: fixed;
     top: 10px;
     right: 10px;
-    border-radius: 3em;
+    border-radius: 3em !important;
     font-size: 18px;
     background-color: rgba(84, 41, 255, 1);
     padding: 10px 20px 10px 20px;
 }
 
 .dashboardWrapper {
-    margin: 5% 0 0 5%;
+    margin: 5% 0 0 3%;
     width: 90%;
 }
 
@@ -44,6 +46,23 @@
 .tableWrapper {
     margin-top: 10%;
     margin-left: 5%;
+}
+
+.table-cell {
+    max-height: 100px;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table-cell::-webkit-scrollbar {
+    display: none;
+}
+
+.action {
+    cursor: pointer;
+    color: grey;
 }
 
 /**
@@ -80,4 +99,57 @@
     text-align: left;
     color: #fff;
     font-size: 20px;
+}
+
+/**
+ *  Form
+ */
+
+#createForm {
+    color: #fff;
+    display: inline-block;
+    width: 25%;
+    text-align: left;
+    background-color: rgba(84, 41, 255, 1);
+    box-shadow: 10px 10px 2em rgba(180, 180, 180);
+    border-radius: 20px;
+    padding: 1.5em;
+    margin-top: 1.5em;
+}
+
+#createForm label {
+    font-weight: 700;
+}
+
+#createForm input[type="text"] {
+    border-radius: 10px;
+    width: 100%;
+    margin-bottom: 1.5em;
+    padding: 2px 5px;
+}
+
+#createForm input[type="submit"] {
+    float: right;
+    border-radius: 20px;
+    background-color: #fff;
+    font-size: 16px;
+}
+
+#createForm select {
+    border-radius: 10px;
+    width: 100%;
+    margin-bottom: 1.5em;
+    padding: 2px 5px;
+}
+
+@media screen and (max-width: 900px) {
+    #createForm {
+        width: 80%;
+    }
+}
+
+.updateBtn {
+    float: right;
+    background-color: #fff;
+    color: #000;
 }

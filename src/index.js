@@ -15,6 +15,10 @@ import EventMap from "./screens/Home/normal/eventMap";
 import Location from "./screens/Home/normal/location";
 import Admin from "./screens/Home/admin/admin"
 import AdminLogin from './screens/Login/adminlogin'
+import NewUser from "./screens/Home/admin/newUser"
+import NewEvent from "./screens/Home/admin/newEvent"
+import UpdateUser from "./screens/Home/admin/updateUser"
+import UpdateEvent from "./screens/Home/admin/updateEvent"
 
 export default function App() {
   return (
@@ -33,7 +37,11 @@ export default function App() {
         <Route path="/admin" element={<Admin/>}/>
         <Route path="/admin/event" element={<Admin/>}/>
         <Route path="/admin/user" element={<Admin/>}/>
-        
+        <Route path="/admin/newUser" element={<NewUser/>}/>
+        <Route path="/admin/newEvent" element={<NewEvent/>}/>
+        <Route path="/admin/updateUser/:id" element={<UpdateUser/>}/>
+        <Route path="/admin/updateEvent/:id" element={<UpdateEvent/>}/>
+
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/dashboard/location/:id" element={<Location />} />
         <Route path="/allevent" element={<EventMap />} />
