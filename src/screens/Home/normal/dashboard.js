@@ -19,6 +19,8 @@ const Dashboard = () => {
         fetch(`http://18.209.252.141:13000/venue`)
         .then((res) => res.json())
         .then((data) => {
+            console.log(data)
+
             setProgrammes(data)
         })
     }, [])
@@ -107,7 +109,7 @@ const Dashboard = () => {
                                                                     {/* <a onClick={() => navigate("./location/" + item.id)} className="text-body text-decoration-none" >{item.location}</a> */}
                                                                 </p>
                                                             </td>
-                                                            <td width="50%" className="text-body">{item.noofevent}</td>
+                                                            <td width="50%" className="text-body">{item.eventCount}</td>
                                                         </tr>
                                                     ))
                                                 }
