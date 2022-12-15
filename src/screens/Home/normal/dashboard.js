@@ -4,7 +4,6 @@ import './normalPage.css'
 import NormalUserLayout from './normalUserLayout';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
-import { locationList } from './locationList'
 import { useNavigate } from "react-router-dom"
 
 const Dashboard = () => {

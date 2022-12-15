@@ -2,7 +2,6 @@ import React from 'react';
 import { useContext, useEffect, useState } from "react";
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 import { useMemo } from "react";
-import { locationList } from './locationList';
 import NormalUserLayout from './normalUserLayout';
 import { useNavigate } from "react-router-dom"
 

@@ -10,22 +10,25 @@ const UserLogin = () => {
 
     const onLogin = () =>{
         console.log("Attempted to login")
-        const response = fetch(`http://18.209.252.141:13000/user/login`, {
+        fetch(`http://18.209.252.141:13000/user/login`, {
 			method: 'POST',
+            mode: 'cors',
 			headers: {
-				'Content-Type': 'application/json',
+				'Content-Type': 'application/x-www-form-urlencoded',
 			},
 			body: {
-                username,
-                password
+                username: username,
+                password: password
 			},
 		})
-        if(response.ok){
-            response.json()
-            .then(response=>localStorage.setItem('jwt', response.accessToken)).catch(err=>console.log(err))
-    
-            navigate('/dashboard', {replace: true})
-          }
+        // console.log(response)
+        // if(response.ok){
+            // response.json()
+            // .then(response=>localStorage.setItem('jwt', response.accessToken)).catch(err=>console.log(err))
+        // .then((res) => {
+        //     navigate('/dashboard', {replace: true})
+        // })
+        // }
     
 		// const data = await response.json()
         // console.log(data)

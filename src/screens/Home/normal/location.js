@@ -13,6 +13,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
+import Accordion from 'react-bootstrap/Accordion';
 
 
 const Location = () => {
@@ -36,8 +37,8 @@ const Location = () => {
 
 
     const handleSubmitComment = async () => {
-        const jwt = localStorage.getItem('jwt')
-        const response = await fetch('http://3.84.124.228:13000/comment/$(userId)/$()', {
+        // const jwt = localStorage.getItem('jwt')
+        const response = await fetch(`http://18.209.252.141:13000/comment/1/${id}`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -46,11 +47,11 @@ const Location = () => {
         })
         const data = await response.json()
 
-        if (data.ok) {
+        // if (data.ok) {
             console.log("result", data)
-        }
+        // }
         // refresh page
-        window.location.reload(false)
+        // window.location.reload(false)
         handleCloseCommentBox();
     }
 
@@ -59,7 +60,7 @@ const Location = () => {
         // locationList[id - 1].fav = !locationList[id - 1].fav 
     }
 
-    // get venue name
+    // get venue namess
     useEffect(() => {
         fetch(`http://18.209.252.141:13000/venue/${id}`)
             .then((res) => res.json())
@@ -82,11 +83,12 @@ const Location = () => {
             })
     }, [])
 
-    // get all comments based on venue
+    // get all comments based on venue 
     useEffect(() => {
         fetch(`http://18.209.252.141:13000/comment/${id}`)
             .then((res) => res.json())
             .then((data) => {
+                console.log(data)
                 setCommentList(data)
                 console.log(commentList)
             })
@@ -128,19 +130,37 @@ const Location = () => {
 
                         <Tabs defaultActiveKey="event" id="location-info" className="mb-3">
                             <Tab eventKey="event" title="Events" >
-                                <Card className='my-2'>
+                                <Accordion className='my-2'>
                                     {eventList
                                         .map((item, index) => {
                                             return (
-                                                <div key={index}>
-                                                    <Card.Header >
+                                                <Accordion.Item eventKey={index}>
+                                                    <Accordion.Header >
                                                         {item.titlee}
-                                                    </Card.Header>
-                                                </div>
+                                                    </Accordion.Header>
+                                                    <Accordion.Body>
+                                                        <div>
+                                                            Date: {item.predateE}
+                                                            <br/>
+                                                            Price: {item.pricee}
+                                                            <br/>
+                                                            Description: {item.desce} 
+                                                            <br />
+                                                            URL: {item.urle}
+                                                            <br/>
+                                                            Remarks: {item.remarke}
+                                                            <br/>
+                                                            Enquiry: {item.enquiry}
+                                                            <br/>
+                                                            {item.presenterorge}                                             
+                                                        </div>
+                                    
+                                                    </Accordion.Body>
+                                                </Accordion.Item>
                                             )
                                         })
                                     }
-                                </Card>
+                                </Accordion>
                             </Tab>
                             <Tab eventKey="comment" title="Comment">
                                 <Card className='my-2'>
