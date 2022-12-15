@@ -19,6 +19,8 @@ import NewUser from "./screens/Home/admin/newUser"
 import NewEvent from "./screens/Home/admin/newEvent"
 import UpdateUser from "./screens/Home/admin/updateUser"
 import UpdateEvent from "./screens/Home/admin/updateEvent"
+import FavLocList from "./screens/Home/normal/favLocList";
+
 
 export default function App() {
   return (
@@ -31,8 +33,6 @@ export default function App() {
         <Route path="/" index element={<Navigate to="/login/user" />} />
         <Route path="/login/user" index element={<UserLogin/>} />
         <Route path="/login/admin" index element={<AdminLogin/>} />
-        
-
 
         <Route path="/admin" element={<Admin/>}/>
         <Route path="/admin/event" element={<Admin/>}/>
@@ -45,7 +45,7 @@ export default function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/dashboard/location/:id" element={<Location />} />
         <Route path="/allevent" element={<EventMap />} />
-
+        <Route path="/dashboard/favloc" element={<FavLocList/>}/>
       </Routes>
     </BrowserRouter>
   );

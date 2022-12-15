@@ -66,7 +66,7 @@ const Dashboard = () => {
                             Location List
                         </div>
                         <div className='page-title-right page-title'>
-                            <button type="button" className="btn btn-primary mb-2 me-1" onClick={() => navigate("/favloc")}>Show Favorite Locations</button>
+                            <button type="button" className="btn btn-primary mb-2 me-1" onClick={() => navigate("./favloc")}>Show Favorite Locations</button>
                             <button type="button" className="btn btn-primary mb-2 me-1" onClick={() => navigate("/allevent")}>Show All Events on Map</button>
                         </div>
                     </div>
