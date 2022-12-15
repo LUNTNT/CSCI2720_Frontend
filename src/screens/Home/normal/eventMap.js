@@ -2,6 +2,7 @@ import React from 'react';
 import { useContext, useEffect, useState } from "react";
 import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 import { useMemo } from "react";
+import { locationList } from './locationList';
 import NormalUserLayout from './normalUserLayout';
 import { useNavigate } from "react-router-dom"
 
@@ -12,18 +13,31 @@ const EventMap = () => {
     });
     const navigate = useNavigate()
     const [selectedMarker, setSelectedMarker] = useState("");
-    const center = { lat: 0, lng: 0 }
+    const center = { lat: 22.282279, lng: 114.161545 }
 
     const [venue, setVenue] = useState([]);
-    const [marker, setMarker] = useState([]);
+    const [activeMarker, setActiveMarker] = useState(null);
     // var venueList = []
+
+    const handleActiveMarker = (marker) => {
+        if (marker === activeMarker) {
+          return;
+        }
+        setActiveMarker(marker);
+      };
+
+
+
 
     useEffect(() => {
         fetch(`http://18.209.252.141:13000/venue`)
             .then((res) => res.json())
             .then((data) => {
                 setVenue(data)
-                console.log(venue)
+                console.log(data)
+
+
+
                 // venue.map(data => {
                 //     // setMarker([data.coordinate])
                 //     // console.log(data.coordinate)
@@ -36,15 +50,16 @@ const EventMap = () => {
                 // })
 
             })
-    }, [])
-    console.log(marker)
+    },[])
+    
 
     if (!isLoaded) return <div>Loading...</div>;
     return (
         <div className="w-100 h-100">
             <NormalUserLayout />
+
             <GoogleMap
-                zoom={1}
+                zoom={11}
                 center={center}
                 mapContainerClassName="map-container"
                 className="w-100 h-100"
@@ -56,18 +71,37 @@ const EventMap = () => {
                 }}
             >
 
-                {/* {venue.map(venue => {
+                {venue.map(({ id, venuee, coordinate}) => {
                     return (
                         <Marker
-                            key={venue.id}
-                            position={marker}
-                            title={venue.venuee}
+                            key={id}
+                            position={coordinate}
+                            title={venuee}
                             // onClick={() => {navigate("/dashboard/location/" + locationList.id);}}
-                            onClick={() => { setSelectedMarker(venue); }}
+                            onClick={() => { handleActiveMarker(id); }}
                         >
+                            {activeMarker === id ? (
+                                <InfoWindow onCloseClick={() => setActiveMarker(null)}>
+                                <div>
+                                    Location: {venuee}
+                                    <br></br>
+                                    <a href={"/dashboard/location/" + id}>Show events</a>
+                                </div>
+                                
+                                </InfoWindow>
+                                
+                            ) : null}
                         </Marker>
+                        // <Marker
+                        //     key={venue.id}
+                        //     position={marker}
+                        //     title={venue.venuee}
+                        //     // onClick={() => {navigate("/dashboard/location/" + locationList.id);}}
+                        //     onClick={() => { setSelectedMarker(venue); }}
+                        // >
+                        // </Marker>
                     )
-                })} */}
+                })}
 
                 {/* {selectedMarker && (
                     <InfoWindow
