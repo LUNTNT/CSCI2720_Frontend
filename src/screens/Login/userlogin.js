@@ -8,31 +8,30 @@ const UserLogin = () => {
     const [password, setPassword] = useState("")
     const navigate = useNavigate()
 
-    function onLogin(event) {
+    const onLogin = async () =>{
         console.log("Attempted to login")
-        // event.preventDefault()
-        // const response = await fetch('http://localhost:3000/login/user', {
-		// 	method: 'POST',
-		// 	headers: {
-		// 		'Content-Type': 'application/json',
-		// 	},
-		// 	body: JSON.stringify({
-		// 		username,
-		// 		password,
-		// 	}),
-		// })
+        const response = await fetch('http://3.84.124.228:13000/user/login', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({
+                "username": username,
+                "password": password
+			}),
+		})
 
-		// const data = await response.json()
-
-		// if (data.user) 
-        // {
-		// 	localStorage.setItem('authenticated', data.user)
-		// 	alert('Login successful')
-         navigate('/dashboard', {replace: true})
-		// } 
-        // else {
-		// 	alert('Please check your username and password')
-		// }
+		const data = await response.json()
+        console.log(data)
+		if (data.user) 
+        {
+			localStorage.setItem('authenticated', data.user)
+			alert('Login successful')
+            navigate('/dashboard', {replace: true})
+		} 
+        else {
+			alert('Please check your username and password')
+		}
 
     }
 

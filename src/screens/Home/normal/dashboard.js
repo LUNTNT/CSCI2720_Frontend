@@ -9,15 +9,24 @@ import { useNavigate } from "react-router-dom"
 
 const Dashboard = () => {
 
-    const [programmes, setProgrammes] = useState(locationList);
+    const [programmes, setProgrammes] = useState([]);
     const [search, setSearch] = useState('');
     const [order, setOrder] = useState("Asc")
     const [authenticated, setauthenticated] = useState(null);
     const navigate = useNavigate()
 
+    useEffect(()=>{
+        fetch(`http://18.209.252.141:13000/venue`)
+        .then((res) => res.json())
+        .then((data) => {
+            setProgrammes(data)
+        })
+    }, [])
+
+
     const sort = (column) => {
         if (order === "Asc") {
-            const sorted = locationList.sort((a, b) => {
+            const sorted = programmes.sort((a, b) => {
                 return a[column] > b[column] ? 1 : -1
             })
             setProgrammes(sorted)
@@ -25,7 +34,7 @@ const Dashboard = () => {
         }
 
         if (order === "Dsc") {
-            const sorted = locationList.sort((a, b) => {
+            const sorted = programmes.sort((a, b) => {
                 return a[column] < b[column] ? 1 : -1
             })
             setProgrammes(sorted)
@@ -51,20 +60,13 @@ const Dashboard = () => {
                 
                 <div className='container-fluid'>
 
-                    <div className='row'>
-                        <div className='col-12'>
-                            <div className='page-title-box'>
-                                <div className='row mb-2'>
-                                    <div className='col-6 col-sm-6'>
-                                        <div className='page-title'>Location List</div>
-                                    </div>
-                                    <div className='col-6 col-sm-6'>
-                                        <div className='page-title-right page-title'>
-                                            <button type="button" className="btn btn-primary mb-2 me-1" onClick={() => navigate("/allevent")}>Show Events on Map</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                    <div className='row page-title-box'>
+                        <div className='page-title col-sm'>
+                            Location List
+                        </div>
+                        <div className='page-title-right page-title'>
+                            <button type="button" className="btn btn-primary mb-2 me-1" onClick={() => navigate("/favloc")}>Show Favorite Locations</button>
+                            <button type="button" className="btn btn-primary mb-2 me-1" onClick={() => navigate("/allevent")}>Show All Events on Map</button>
                         </div>
                     </div>
 
@@ -85,28 +87,27 @@ const Dashboard = () => {
                                         <table className="table table-centered w-100 nowrap">
                                             <thead className="table-light">
                                                 <tr className="all" style={{ width: "20px" }}>
-                                                    <th className="text-body" style={{ cursor: "pointer" }} onClick={() => sort("id")}>No.</th>
+                                                    {/* <th className="text-body" style={{ cursor: "pointer" }} onClick={() => sort("id")}>No.</th> */}
                                                     <th className="text-body">Location</th>
                                                     <th className="text-body" style={{ cursor: "pointer" }} onClick={() => sort("noofevent")}>Number of Events</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                {locationList
+                                                {programmes
                                                     .filter((item) => {
                                                         return search.toLowerCase() === ''
                                                             ? item
-                                                            : item.location.toLowerCase().includes(search);
+                                                            : item.venuee.toLowerCase().includes(search);
                                                     })
                                                     .map((item, index) => (
                                                         <tr key={index}>
-                                                            <td width="10%" className="text-body">{item.id}</td>
-                                                            <td width="45%">
+                                                            <td width="50%">
                                                                 <p className="m-0 d-inline-block align-middle font-16">
-                                                                    <a href={"/dashboard/location/" + item.id}  className="text-body" >{item.location}</a>
+                                                                    <a href={"/dashboard/location/" + item.id}  className="text-body" >{item.venuee}</a>
                                                                     {/* <a onClick={() => navigate("./location/" + item.id)} className="text-body text-decoration-none" >{item.location}</a> */}
                                                                 </p>
                                                             </td>
-                                                            <td width="45%" className="text-body">{item.noofevent}</td>
+                                                            <td width="50%" className="text-body">{item.noofevent}</td>
                                                         </tr>
                                                     ))
                                                 }

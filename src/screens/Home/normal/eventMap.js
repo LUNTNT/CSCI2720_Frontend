@@ -14,17 +14,15 @@ const EventMap = () => {
     const navigate = useNavigate()
     const [selectedMarker, setSelectedMarker] = useState("");
 
-    // const info = new google.maps.InfoWindow({
-    //     content: contentString,
-    //     position: position        
-    // })
-    const showinfo = () => {
-        return (
-            <InfoWindow
-                content="ss"
-            />
-        )
-    }
+    const [venue, setVenue] = useState([]);
+
+    useEffect(()=>{
+        fetch(`http://18.209.252.141:13000/venue`)
+        .then((res) => res.json())
+        .then((data) => {
+            setVenue(data)
+        })
+    }, [])
 
     if (!isLoaded) return <div>Loading...</div>;
     return <Map />;
@@ -50,17 +48,17 @@ const EventMap = () => {
                     {locationList.map(locationList => {
                         return (
                             <Marker
-                                key={locationList.id}
-                                position={{ lat: locationList.coordinate.lat, lng: locationList.coordinate.lng }}
-                                title={locationList.location}
+                                key={venue.id}
+                                position={{ lat: venue.latitude, lng: venue.longitude }}
+                                title={venue.venuee}
                                 // onClick={() => {navigate("/dashboard/location/" + locationList.id);}}
-                                onClick={() => { setSelectedMarker(locationList); }}
+                                onClick={() => { setSelectedMarker(venue); }}
                             >
                             </Marker>
                         )
                     })}
 
-                    {selectedMarker && (
+                    {/* {selectedMarker && (
                         <InfoWindow
                             position={selectedMarker.coordinate}
                             options={{
@@ -73,7 +71,7 @@ const EventMap = () => {
                                 <a href={"/dashboard/location/" + selectedMarker.id}>Show events</a>
                             </div>
                         </InfoWindow>
-                    )}
+                    )} */}
 
                 </GoogleMap>
 

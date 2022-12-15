@@ -13,17 +13,13 @@ const NormalUserLayout = () => {
 
     const [currentUsername, setCurrentUsername] = useState("")
 
-    const getUserName = async () => {
-
-        const response = await fetch(`http://localhost:3000/user/username`, {
-            headers: {
-                'Authorization': `Bearer ${jwt}`
-            }
-
-        }).then(response => response.text())
-
-        setCurrentUsername(response)
-    }
+    // useEffect(()=>{
+    //     fetch(`http://18.209.252.141:13000/user`)
+    //     .then(res => res.text())
+    //     .then((data) => {
+    //         setCurrentUsername(data)
+    //     })
+    // }, [])
 
     const onLogOut = () => {
         console.log("Attempted to log out")
