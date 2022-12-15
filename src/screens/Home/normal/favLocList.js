@@ -45,16 +45,14 @@ const FavLocList= ()=> {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {favLoc
-                                                .map((item, index) => (
+                                            {favLoc.map((item, index) => (
                                                     <tr key={index}>
                                                         <td width="10%" className="text-body">{item.id}</td>
                                                         <td width="45%">
                                                             <p className="m-0 d-inline-block align-middle font-16">
-                                                                <a href={"/dashboard/location/" + item.id}  className="text-body" >{item.favouriteVenues}</a>
+                                                                <a href={"./location/" + item.id}  className="text-body" >{item.favouriteVenues}</a>
                                                             </p>
                                                         </td>
-                                                        <td width="45%" className="text-body">{item.noofevent}</td>
                                                     </tr>
                                                 ))
                                             }
