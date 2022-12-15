@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './admin.css';
 import AdminLayout from './adminLayout';
+import Button from 'react-bootstrap/Button';
 
 const NewUser = () => {
     const [collapsed, setCollapsed] = useState(false);
@@ -8,6 +9,31 @@ const NewUser = () => {
     const handleCollapseChange = () => {
         setCollapsed(!collapsed);
     };
+
+    const handleCreateClick = () => {
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+        var userType = document.getElementById('userType').value;
+
+        var body = new URLSearchParams();
+        body.append("username", username);
+        body.append("password", password);
+        body.append("userType", userType);
+        
+        fetch(`http://18.209.252.141:13000/user`,
+            {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: body
+            }
+        )
+        .then((res) => {
+            document.getElementById('notiPanel').innerHTML = 'Created';
+        })
+    }
 
     return (
         <>
@@ -36,8 +62,14 @@ const NewUser = () => {
                                     </select>
                                     
                                     <br/>
-                                    <input type="submit" value="Create"></input>
+                                    <Button
+                                        className="updateBtn"
+                                        onClick={handleCreateClick}
+                                    >
+                                    Create
+                                    </Button>
                                 </form>
+                                <div id="notiPanel"></div>
                             </div>
                         </div>
                     </div>

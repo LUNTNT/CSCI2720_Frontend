@@ -4,7 +4,6 @@ import Col from 'react-bootstrap/Col';
 import Card from 'react-bootstrap/Card';
 import Table from 'react-bootstrap/Table';
 import Button from 'react-bootstrap/Button';
-import { userList } from './UserList';
 import { MdDelete, MdUpdate } from 'react-icons/md';
 import { Link, useNavigate } from 'react-router-dom';
 
