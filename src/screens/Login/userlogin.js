@@ -34,6 +34,7 @@ const UserLogin = () => {
                 console.log(data)
                 localStorage.setItem("userid", data.userId)
                 localStorage.setItem("username", data.username)
+                localStorage.setItem("myToken", true)
                 navigate('/dashboard', {replace: true})
             }
         })

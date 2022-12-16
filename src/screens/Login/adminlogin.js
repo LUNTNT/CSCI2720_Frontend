@@ -26,6 +26,7 @@ const AdminLogin = () => {
 		})
         .then((res) => {
             console.log(res)
+            localStorage.setItem("myToken", true)
             navigate('/admin', {replace: true})
 
         })
