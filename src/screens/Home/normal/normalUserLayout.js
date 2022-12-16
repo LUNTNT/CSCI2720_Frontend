@@ -20,7 +20,8 @@ const NormalUserLayout = () => {
 
     const onLogOut = () => {
         console.log("Attempted to log out")
-        // localStorage.removeItem('authenticated')
+        localStorage.removeItem('username')
+        localStorage.removeItem('userid')
         navigate('/login/user', { replace: true })
     }
 

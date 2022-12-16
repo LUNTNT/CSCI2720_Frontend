@@ -15,6 +15,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
 import Accordion from 'react-bootstrap/Accordion';
 import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
+import { useNavigate } from "react-router-dom"
 
 const Location = () => {
     const { id } = useParams()
@@ -28,6 +29,7 @@ const Location = () => {
     const [favouriteList, setFavoriteList] = useState([]);
 
     const [uID, setUID] = useState("")
+    const navigate = useNavigate()
 
     const [marker, setMarker] = useState({lat: 0, lng: 0});
     // const [coordinate, setCoordinate] = useState
@@ -62,7 +64,9 @@ const Location = () => {
         // if (data.ok) {
         // }
         // refresh page
-        window.location.reload(false)
+        // window.location.reload(false)
+        navigate('/dashboard', {replace: true})
+
         handleCloseCommentBox();
     }
 
@@ -119,6 +123,7 @@ const Location = () => {
 
     // get all comments based on venue 
     useEffect(() => {
+
         fetch(`http://18.209.252.141:13000/comment/${id}`)
             .then((res) => res.json())
             .then((data) => {
