@@ -30,6 +30,11 @@
     font-size: 30px;
 }
 
+.menuToggleBtn {
+    font-size: 30px;
+    cursor: pointer;
+}
+
 .addEventBtn, .addUserBtn {
     background-color: rgba(84, 41, 255, 1);
     box-shadow: 3px 3px 5px black;

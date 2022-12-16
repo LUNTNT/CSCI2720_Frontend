@@ -51,7 +51,7 @@ const NewEvent = () => {
     return (
         <>
             <div onClick={() => handleToggleSidebar(true)}>
-                <FaBars />
+                <FaBars className='menuToggleBtn'/>
             </div>
             <AdminLayout 
                 collapsed={collapsed}
