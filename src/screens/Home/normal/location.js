@@ -40,17 +40,19 @@ const Location = () => {
     const handleSubmitComment = () => {
         // const jwt = localStorage.getItem('jwt')
         console.log(comment)
-        const response = fetch(`http://18.209.252.141:13000/comment/2/${id}`, {
+        var body = new URLSearchParams()
+        body.append("content", comment)
+
+        fetch(`http://18.209.252.141:13000/comment/3/${id}`, {
             method: 'POST',
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },
-            body: {content: comment}
+            body: body
         })
-        // const data = response.json()
-        response.then((res) => {
-            console.log("result", res)
+        .then((res) => {
+            console.log(res)
         })
         // if (data.ok) {
         // }
