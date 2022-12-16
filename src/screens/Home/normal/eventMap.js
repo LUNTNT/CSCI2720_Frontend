@@ -4,6 +4,7 @@ import { GoogleMap, useLoadScript, Marker, InfoWindow } from '@react-google-maps
 import { useMemo } from "react";
 import NormalUserLayout from './normalUserLayout';
 import { useNavigate } from "react-router-dom"
+import "../../../"
 
 const EventMap = () => {
 
@@ -56,7 +57,9 @@ const EventMap = () => {
     return (
         <div className="w-100 h-100">
             <NormalUserLayout />
-
+            <a href={"/dashboard"} className="text-body pb-2" style={{ color: '#ffffff00' }}>
+              &laquo; Back
+            </a>
             <GoogleMap
                 zoom={11}
                 center={center}
@@ -118,6 +121,8 @@ const EventMap = () => {
                 )} */}
 
             </GoogleMap>
+            
+
 
         </div>
     )
