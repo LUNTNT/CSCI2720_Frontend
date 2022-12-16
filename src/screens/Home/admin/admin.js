@@ -19,30 +19,25 @@ const Admin = () => {
 
     const handleToggleSidebar = (value) => {
         setToggled(value);
+        setCollapsed(false)
     };
 
     return (
         <>
-            <div className="two-column">
-                <div className="firstCol" style={ collapsed ? { width: "5%" } : { width: "15%" }}>
-                    <AdminLayout 
-                        collapsed={collapsed}
-                        toggled={toggled}
-                        handleToggleSidebar={handleToggleSidebar}
-                        handleCollapseChange={handleCollapseChange}
-                    />
-                </div>
-                <div className="secondCol" style={ collapsed ? { width: "90%" } : { width: "80%" }}>
-                    <div onClick={() => handleToggleSidebar(true)} style={{ marginLeft: "2em" }}>
-                        <FaBars />
-                    </div>
-                    <div className="dashboardWrapper">
-                        <h2 className="welcomeAdmin">Welcome, Admin</h2>
-                        <div className="tableWrapper">
-                            {location.pathname.includes('/event') ? <Event /> : ''}
-                            {location.pathname.includes('/user') ? <User /> : ''}
-                        </div>
-                    </div>
+            <div onClick={() => handleToggleSidebar(true)}>
+                <FaBars />
+            </div>
+            <AdminLayout 
+                collapsed={collapsed}
+                toggled={toggled}
+                handleToggleSidebar={handleToggleSidebar}
+                handleCollapseChange={handleCollapseChange}
+            />
+            <div className={`dashboardWrapper ${ collapsed ? "" : "notCollapsed"}`}>
+                <h2 className="welcomeAdmin">Welcome, Admin</h2>
+                <div className="tableWrapper">
+                    {location.pathname.includes('/event') ? <Event /> : ''}
+                    {location.pathname.includes('/user') ? <User /> : ''}
                 </div>
             </div>
         </>

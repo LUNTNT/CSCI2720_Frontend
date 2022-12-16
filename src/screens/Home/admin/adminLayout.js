@@ -3,6 +3,9 @@ import { Button } from 'react-bootstrap';
 import './admin.css';
 import "react-pro-sidebar/dist/css/styles.css";
 import { AiOutlineMenuUnfold, AiOutlineMenuFold } from 'react-icons/ai';
+import { RiCalendarEventFill } from 'react-icons/ri';
+import { FaUserCircle } from 'react-icons/fa';
+import { MdLogout } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import {
     ProSidebar,
@@ -47,12 +50,15 @@ const AdminLayout = ({
                             ><AiOutlineMenuFold /></Button>}
                     </SidebarHeader>
                     <SidebarContent>
-                        <Menu>
-                            <MenuItem>
-                                <Link to="/admin/event">Event</Link>
+                        <Menu iconShape="circle">
+                            <MenuItem icon={<RiCalendarEventFill style={{ color: "#000", fontSize: "1.3em" }} />}>
+                                <Link to="/admin/event" style={{ fontWeight: "700", fontSize: "1.4em" }}>Event</Link>
                             </MenuItem>
-                            <MenuItem>
-                                <Link to="/admin/user">User</Link>
+                            <MenuItem icon={ <FaUserCircle style={{ color: "#000", fontSize: "1.3em" }} /> }>
+                                <Link to="/admin/user" style={{ fontWeight: "700", fontSize: "1.4em" }}>User</Link>
+                            </MenuItem>
+                            <MenuItem className="logOutBtn-Menu" icon={ <MdLogout style={{ color: "#000", fontSize: "1.3em" }} /> }>
+                                <Button className="logOutBtn-Menu" onClick={(e) => { onLogOut() }}>Logout</Button>
                             </MenuItem>
                         </Menu>
                     </SidebarContent>
