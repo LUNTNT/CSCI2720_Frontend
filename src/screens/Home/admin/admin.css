@@ -32,6 +32,11 @@
     font-size: 18px;
     background-color: rgba(84, 41, 255, 1);
     padding: 10px 20px 10px 20px;
+    z-index: 999;
+}
+
+.btn-toggle {
+    cursor: pointer;
 }
 
 .dashboardWrapper {

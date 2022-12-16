@@ -25,7 +25,7 @@ const AdminLayout = ({
                 collapsed={collapsed}
                 toggled={toggled}
                 onToggle={handleToggleSidebar}
-                breakpoint="md"
+                breakPoint="md"
             >
                 <SidebarHeader>
                     {collapsed ? 

@@ -8,7 +8,7 @@ const UserLogin = () => {
     const [password, setPassword] = useState("")
     const navigate = useNavigate()
 
-    const onLogin = () =>{
+    const onLogin = () => {
         console.log("Attempted to login")
         fetch(`http://18.209.252.141:13000/user/login`, {
 			method: 'POST',
@@ -19,8 +19,9 @@ const UserLogin = () => {
 			body: {
                 username: username,
                 password: password
-			},
+            }
 		})
+        .then((res) => console.log(res))
         // console.log(response)
         // if(response.ok){
             // response.json()
@@ -75,7 +76,7 @@ const UserLogin = () => {
                                </span>
                             </div>
                             <div className='text-center pt-1 mt-4 pb-1' >
-                                <button type='button' className="btn btn-block btn-primary w-100 buttonColor" style={{borderRadius:"0.5rem"}} onClick={(e)=> {onLogin()}}>
+                                <button type='button' className="btn btn-block btn-primary w-100 buttonColor" style={{borderRadius:"0.5rem"}} onClick={ () => onLogin() }>
                                     Sign In
                                 </button>
                             </div>

@@ -14,17 +14,18 @@ import Button from 'react-bootstrap/Button';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Form from 'react-bootstrap/Form';
 import Accordion from 'react-bootstrap/Accordion';
-
+import { AiFillHeart, AiOutlineHeart } from 'react-icons/ai';
 
 const Location = () => {
     const { id } = useParams()
-    // const [favorite, setFavorite] = useState(locationList[id - 1].fav)
+    const [favourite, setFavourite] = useState(false)
     const [showCommentBox, setShowCommentBox] = useState(false)
     const [comment, setComment] = useState("")
 
     const [venue, setVenue] = useState([]);
     const [eventList, setEventList] = useState([]);
     const [commentList, setCommentList] = useState([]);
+    const [favouriteList, setFavoriteList] = useState([]);
 
     const [marker, setMarker] = useState({lat: 0, lng: 0});
     // const [coordinate, setCoordinate] = useState
@@ -58,10 +59,33 @@ const Location = () => {
         handleCloseCommentBox();
     }
 
-    const addFav = () => {
-        // setFavorite(!favorite); 
-        // locationList[id - 1].fav = !locationList[id - 1].fav 
+    /**
+     *  Start of Favourite 
+     */
+
+    const handleAddFavourite = () => {
+        fetch(`http://18.209.252.141:13000/user/favouriteVenues/3/${id}`, {
+            method: 'POST',
+            mode: 'cors'
+        })
+        .then((res) => {
+            setFavourite(true)
+        })
     }
+
+    const handleDeleteFavourite = () => {
+        fetch(`http://18.209.252.141:13000/user/favouriteVenues/3/${id}`, {
+            method: 'DELETE',
+            mode: 'cors'
+        })
+        .then((res) => {
+            setFavourite(false)
+        })
+    }
+
+    /**
+     *  End of Favourite
+     */
 
     // get venue namess
     useEffect(() => {
@@ -97,6 +121,19 @@ const Location = () => {
             })
     }, [])
 
+    // get all favourites based on user
+    useEffect(() => {
+        fetch(`http://18.209.252.141:13000/user/favouriteVenues/3`)
+            .then((res) => res.json())
+            .then((data) => {
+                for (var i = 0; i < data[0].favouriteVenues.length; i++) {
+                    if (data[0].favouriteVenues[i].id == id) {
+                        setFavourite(true)
+                    }
+                }
+            })
+    }, [])
+
     if (!isLoaded) return <div>Loading...</div>;
 
     return (
@@ -116,14 +153,14 @@ const Location = () => {
                             </span>
 
 
-                            <button type='button' className="btn btn-block "
-                                onClick={(e) => { addFav() }}
-                            >
-                                {/* {favorite
-                                    ? <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" /></svg>
-                                    : <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16"><path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" /></svg>
-                                } */}
-                            </button>
+                            {   favourite 
+                                ? <button className="btn btn-block" onClick={handleDeleteFavourite}><AiFillHeart style={{ width: "35", height: "35", color: "red" }}/></button>
+                                : <button className="btn btn-block" onClick={handleAddFavourite}><AiOutlineHeart style={{ width: "35", height: "35" }}/></button>
+                            }
+                            {/*{favorite
+                                ? <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16"> <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z" /></svg>
+                                : <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-star" viewBox="0 0 16 16"><path d="M2.866 14.85c-.078.444.36.791.746.593l4.39-2.256 4.389 2.256c.386.198.824-.149.746-.592l-.83-4.73 3.522-3.356c.33-.314.16-.888-.282-.95l-4.898-.696L8.465.792a.513.513 0 0 0-.927 0L5.354 5.12l-4.898.696c-.441.062-.612.636-.283.95l3.523 3.356-.83 4.73zm4.905-2.767-3.686 1.894.694-3.957a.565.565 0 0 0-.163-.505L1.71 6.745l4.052-.576a.525.525 0 0 0 .393-.288L8 2.223l1.847 3.658a.525.525 0 0 0 .393.288l4.052.575-2.906 2.77a.565.565 0 0 0-.163.506l.694 3.957-3.686-1.894a.503.503 0 0 0-.461 0z" /></svg>
+                            }*/}
 
                             <button type='button' className="btn btn-block " onClick={handleShowCommentBox}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" className="bi bi-chat" viewBox="0 0 16 16"><path d="M2.678 11.894a1 1 0 0 1 .287.801 10.97 10.97 0 0 1-.398 2c1.395-.323 2.247-.697 2.634-.893a1 1 0 0 1 .71-.074A8.06 8.06 0 0 0 8 14c3.996 0 7-2.807 7-6 0-3.192-3.004-6-7-6S1 4.808 1 8c0 1.468.617 2.83 1.678 3.894zm-.493 3.905a21.682 21.682 0 0 1-.713.129c-.2.032-.352-.176-.273-.362a9.68 9.68 0 0 0 .244-.637l.003-.01c.248-.72.45-1.548.524-2.319C.743 11.37 0 9.76 0 8c0-3.866 3.582-7 8-7s8 3.134 8 7-3.582 7-8 7a9.06 9.06 0 0 1-2.347-.306c-.52.263-1.639.742-3.468 1.105z" /></svg>
