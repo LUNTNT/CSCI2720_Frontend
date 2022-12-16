@@ -178,7 +178,7 @@
 #createForm {
     color: #fff;
     display: inline-block;
-    width: 25%;
+    width: 300px;
     text-align: left;
     background-color: rgba(84, 41, 255, 1);
     box-shadow: 10px 10px 2em rgba(180, 180, 180);
@@ -210,12 +210,6 @@
     width: 100%;
     margin-bottom: 1.5em;
     padding: 2px 5px;
-}
-
-@media screen and (max-width: 900px) {
-    #createForm {
-        width: 80%;
-    }
 }
 
 .updateBtn {

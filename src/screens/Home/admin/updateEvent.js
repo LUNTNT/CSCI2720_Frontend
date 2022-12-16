@@ -3,6 +3,7 @@ import './admin.css';
 import AdminLayout from './adminLayout';
 import { useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
+import { FaBars } from 'react-icons/fa';
 
 const UpdateEvent = () => {
     const { id } = useParams();
@@ -22,9 +23,15 @@ const UpdateEvent = () => {
     }, []);
 
     const [collapsed, setCollapsed] = useState(false);
+    const [toggled, setToggled] = useState(true);
 
     const handleCollapseChange = () => {
         setCollapsed(!collapsed);
+    };
+
+    const handleToggleSidebar = (value) => {
+        setToggled(value);
+        setCollapsed(false)
     };
 
     const handleUpdateSubmit = () => {
@@ -60,41 +67,40 @@ const UpdateEvent = () => {
 
     return (
         <>
-            <div className="two-column">
-                <div className="firstCol" style={ collapsed ? { width: "10%"} : { width : "15%" } }>
-                    <AdminLayout 
-                        collapsed={collapsed}
-                        handleCollapseChange={handleCollapseChange}
-                    />
-                </div>
-                <div className="secondCol" style={ collapsed ? { width: "90%"} : { width : "80%" } }>
-                    <div className="dashboardWrapper">
-                        <h2 className="welcomeAdmin">Welcome, Admin</h2>
-                        <div className="tableWrapper">
-                            <div style={{ textAlign: "center" }}>
-                                <h2>New Event</h2>
-                                <form action="http://18.209.252.141:13000/event" method="post" id="createForm">
-                                    <label for="title">Title:</label><br/>
-                                    <input type="text" name="title" id="title" required/><br/>
-                                    <label for="venue">Venue ID:</label><br/>
-                                    <input type="text" name="venue" id="venue" required/><br/>
-                                    <label for="dateTime">Date/time:</label><br/>
-                                    <input type="text" name="dateTime" id="dateTime" required/><br/>
-                                    <label for="description">Description:</label><br/>
-                                    <input type="text" name="description" id="description" required/><br/>
-                                    <label for="presenter">Presenter:</label><br/>
-                                    <input type="text" name="presenter" id="presenter" required/><br/>
-                                    <label for="price">Price:</label><br/>
-                                    <input type="text" name="price" id="price" required/><br/>
-                                    <Button
-                                        className='updateBtn'
-                                        onClick={handleUpdateSubmit}
-                                    >
-                                        Update
-                                    </Button>
-                                </form>
-                            </div>
-                        </div>
+            <div onClick={() => handleToggleSidebar(true)}>
+                <FaBars />
+            </div>
+            <AdminLayout 
+                collapsed={collapsed}
+                toggled={toggled}
+                handleToggleSidebar={handleToggleSidebar}
+                handleCollapseChange={handleCollapseChange}
+            />
+            <div className={`dashboardWrapper ${ collapsed ? "" : "notCollapsed"}`}>
+                <h2 className="welcomeAdmin">Welcome, Admin</h2>
+                <div className="tableWrapper">
+                    <div style={{ textAlign: "center" }}>
+                        <h2>New Event</h2>
+                        <form action="http://18.209.252.141:13000/event" method="post" id="createForm">
+                            <label for="title">Title:</label><br/>
+                            <input type="text" name="title" id="title" required/><br/>
+                            <label for="venue">Venue ID:</label><br/>
+                            <input type="text" name="venue" id="venue" required/><br/>
+                            <label for="dateTime">Date/time:</label><br/>
+                            <input type="text" name="dateTime" id="dateTime" required/><br/>
+                            <label for="description">Description:</label><br/>
+                            <input type="text" name="description" id="description" required/><br/>
+                            <label for="presenter">Presenter:</label><br/>
+                            <input type="text" name="presenter" id="presenter" required/><br/>
+                            <label for="price">Price:</label><br/>
+                            <input type="text" name="price" id="price" required/><br/>
+                            <Button
+                                className='updateBtn'
+                                onClick={handleUpdateSubmit}
+                            >
+                                Update
+                            </Button>
+                        </form>
                     </div>
                 </div>
             </div>
