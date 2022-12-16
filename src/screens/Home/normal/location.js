@@ -195,19 +195,19 @@ const Location = () => {
                                                     </Accordion.Header>
                                                     <Accordion.Body>
                                                         <div>
-                                                            Date: {item.predateE}
+                                                            Date: {item.predateE == '' ? 'N.A' : item.predateE}
                                                             <br/>
-                                                            Price: {item.pricee}
+                                                            Price: {item.pricee == '' ? 'N.A' : item.pricee}
                                                             <br/>
-                                                            Description: {item.desce} 
+                                                            Description: {item.desce == '' ? 'N.A' : item.desce} 
                                                             <br />
-                                                            URL: {item.urle}
+                                                            URL: {item.urle == '' ? 'N.A' : item.urle}
                                                             <br/>
-                                                            Remarks: {item.remarke}
+                                                            Remarks: {item.remarke == '' ? 'N.A' : item.remarke}
                                                             <br/>
-                                                            Enquiry: {item.enquiry}
+                                                            Enquiry: {item.enquiry == '' ? 'N.A' : item.enquiry}
                                                             <br/>
-                                                            {item.presenterorge}                                             
+                                                            {item.presenterorge == '' ? 'N.A' : item.presenterorge}                                             
                                                         </div>
                                     
                                                     </Accordion.Body>
@@ -231,6 +231,7 @@ const Location = () => {
                                                             By: {item.user.username}
                                                         </div>
                                                     </Accordion.Body>
+
                                                 </Accordion.Item>
                                             )
                                         })

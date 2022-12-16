@@ -96,7 +96,7 @@ const Dashboard = () => {
                                                 <tr className="all" style={{ width: "20px" }}>
                                                     {/* <th className="text-body" style={{ cursor: "pointer" }} onClick={() => sort("id")}>No.</th> */}
                                                     <th className="text-body">Location</th>
-                                                    <th className="text-body" style={{ cursor: "pointer" }} onClick={() => sort("noofevent")}>Number of Events</th>
+                                                    <th className="text-body" style={{ cursor: "pointer" }} onClick={() => sort("eventCount")}>Number of Events</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
