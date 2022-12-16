@@ -5,6 +5,7 @@ import NormalUserLayout from './normalUserLayout';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import { useNavigate } from "react-router-dom"
+import NormalUserFooter from './normalUserFooter';
 
 const Dashboard = () => {
 
@@ -65,9 +66,14 @@ const Dashboard = () => {
                         <div className='page-title col-sm'>
                             Location List
                         </div>
-                        <div className='page-title-right page-title'>
-                            <button type="button" className="btn btn-primary mb-2 me-1" onClick={() => navigate("./favloc")}>Show Favorite Locations</button>
-                            <button type="button" className="btn btn-primary mb-2 me-1" onClick={() => navigate("/allevent")}>Show All Events on Map</button>
+                        <div>
+                            <div className='text-body'>
+                                Last Updated: 14-12-2022 15:09
+                            </div>
+                            <div className='page-title-right page-title'>
+                                <button type="button" className="btn btn-primary mb-2 me-1" onClick={() => navigate("./favloc")}>Show Favorite Locations</button>
+                                <button type="button" className="btn btn-primary mb-2 me-1" onClick={() => navigate("/allevent")}>Show All Events on Map</button>
+                            </div>
                         </div>
                     </div>
 
@@ -121,6 +127,8 @@ const Dashboard = () => {
                     </div>
 
                 </div>
+                <br />
+                <NormalUserFooter />
             </div>
         )
     // }

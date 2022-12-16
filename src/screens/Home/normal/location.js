@@ -2,6 +2,8 @@ import React from 'react';
 import { Card } from 'react-bootstrap';
 import Container from 'react-bootstrap/Container';
 import NormalUserLayout from './normalUserLayout';
+import NormalUserFooter from './normalUserFooter';
+
 import '../../../style.css'
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
@@ -216,19 +218,24 @@ const Location = () => {
                                 </Accordion>
                             </Tab>
                             <Tab eventKey="comment" title="Comment">
-                                <Card className='my-2'>
+                                <Accordion className='my-2'>
                                     {commentList
                                         .map((item, index) => {
                                             return (
-                                                <div key={index}>
-                                                    <Card.Header >
+                                                <Accordion.Item eventKey={index}>
+                                                    <Accordion.Header >
                                                         {item.content}
-                                                    </Card.Header>
-                                                </div>
+                                                    </Accordion.Header>
+                                                    <Accordion.Body>
+                                                        <div>
+                                                            By: {item.user.username}
+                                                        </div>
+                                                    </Accordion.Body>
+                                                </Accordion.Item>
                                             )
                                         })
                                     }
-                                </Card>
+                                </Accordion>
                             </Tab>
                         </Tabs>
                     </div>
@@ -299,6 +306,8 @@ const Location = () => {
 
                 </div>
             </div>
+            <br />
+            <NormalUserFooter />
         </div>
 
     )

@@ -33,6 +33,9 @@ const User = () => {
         <Row>
             <Col>
                 <h4 class="page-title">Users</h4>
+                <h6 class="page-title">
+                    Last Updated: 14-12-2022 15:09
+                </h6>
             </Col>
         </Row>
 
@@ -65,6 +68,8 @@ const User = () => {
                                                         <MdEdit />
                                                     </span>
                                                 </Link>
+                                                &nbsp;
+                                                &nbsp;
                                                 <span className="action" onClick={ () => deleteUser(item.id) }>
                                                     <MdDelete />
                                                 </span>

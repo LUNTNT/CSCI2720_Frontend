@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NormalUserLayout from "./normalUserLayout";
+import NormalUserFooter from "./normalUserFooter";
 
 const FavLocList = () => {
     const [favLoc, setFavLoc] = useState([])
@@ -71,6 +72,11 @@ const FavLocList = () => {
                     </div>
                 </div>
 
+            </div>
+
+            <br />
+            <div style={{position: "absolute", left: 0, bottom:0, right:0 }} >
+                <NormalUserFooter />
             </div>
         </div>
     )
