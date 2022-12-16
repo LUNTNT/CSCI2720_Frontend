@@ -4,7 +4,6 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Switch,
   Navigate,
   Outlet 
 } from 'react-router-dom';
@@ -20,8 +19,6 @@ import NewEvent from "./screens/Home/admin/newEvent"
 import UpdateUser from "./screens/Home/admin/updateUser"
 import UpdateEvent from "./screens/Home/admin/updateEvent"
 import FavLocList from "./screens/Home/normal/favLocList";
-import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom"
 
 
 const App = () => {
@@ -39,15 +36,6 @@ const App = () => {
     );
   };
 
-  // const PublicRoute = (props) => {
-  //   const token = localStorage.getItem("myToken");
-
-  //   return token ? (
-  //     <Navigate to={{ pathname: "/main" }} />
-  //   ) : (
-  //     <Route {...props} />
-  //   );
-  // };
   return (
 
     <Router>
@@ -55,11 +43,15 @@ const App = () => {
       <Routes>
         {/* add path here */}
         {/* first page is login, so add "index" */}
+        
+        {/* Public Route */}
 
           <Route path="/" index element={<Navigate to="/login/user" />} />
           <Route path="/login/user" index element={<UserLogin />} />
           <Route path="/login/admin" index element={<AdminLogin />} />
 
+        {/* Private Route */}
+        
           <Route exact path='/' element={<PrivateRoute/>}>
             <Route path="/admin" element={<Admin />} />
             <Route path="/admin/event" element={<Admin />} />
