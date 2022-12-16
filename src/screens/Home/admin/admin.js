@@ -35,7 +35,7 @@ const Admin = () => {
             />
             <div className={`dashboardWrapper ${ collapsed ? "" : "notCollapsed"}`}>
                 <h2 className="welcomeAdmin">Welcome, Admin</h2>
-                <div className="tableWrapper">
+                <div className="tableWrapper" style={{width: "100%"}}>
                     {location.pathname.includes('/event') ? <Event /> : ''}
                     {location.pathname.includes('/user') ? <User /> : ''}
                 </div>

@@ -10,6 +10,19 @@ input, input::placeholder {
     background-color: rgba(84, 41, 255, 1);
 }
 
+.footer-color {
+    background-color: rgba(84, 41, 255, 1);
+    color: white;
+
+}
+.footer {
+    /* position:absolute; */
+    left:0;
+    bottom:0;
+    right:0;    
+}
+
+
 .map-container {
     width: 100%;
     height: 100vh;

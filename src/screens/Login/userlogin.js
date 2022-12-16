@@ -24,8 +24,12 @@ const UserLogin = () => {
 			body: body
 		})
         .then((response) => {
+            // console.log(response)
             if (response.ok) {
                 return response.json()
+            }
+            else {
+                alert("Please check your username or password")
             }
 
         })

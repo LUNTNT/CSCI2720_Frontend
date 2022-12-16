@@ -5,6 +5,7 @@ import { useMemo } from "react";
 import NormalUserLayout from './normalUserLayout';
 import { useNavigate } from "react-router-dom"
 import "../../../"
+import NormalUserFooter from './normalUserFooter';
 
 const EventMap = () => {
 
@@ -121,6 +122,8 @@ const EventMap = () => {
                 )} */}
 
             </GoogleMap>
+            <br />
+            <NormalUserFooter />
             
 
 

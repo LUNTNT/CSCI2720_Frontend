@@ -65,6 +65,8 @@ const User = () => {
                                                         <MdEdit />
                                                     </span>
                                                 </Link>
+                                                &nbsp;
+                                                &nbsp;
                                                 <span className="action" onClick={ () => deleteUser(item.id) }>
                                                     <MdDelete />
                                                 </span>
