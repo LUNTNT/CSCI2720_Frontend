@@ -43,8 +43,9 @@ const NewEvent = () => {
                 body: body
             }
         )
-        .then((res) => {
-            document.getElementById('notiPanel').innerHTML = 'Created';
+        .then((res) => res.json())
+        .then((data) => {
+            document.getElementById('notiPanel').innerHTML = 'Created. EventID: ' + data.id;
         })
     }
 

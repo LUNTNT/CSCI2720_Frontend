@@ -59,7 +59,7 @@ const AdminLayout = ({
                             <MenuItem icon={ <FaUserCircle style={{ color: "#000", fontSize: "1.3em" }} /> }>
                                 <Link to="/admin/user" style={{ fontWeight: "700", fontSize: "1.4em" }}>User</Link>
                             </MenuItem>
-                            <MenuItem className="logOutBtn-Menu" icon={ <MdLogout style={{ color: "#000", fontSize: "1.3em" }} /> }>
+                            <MenuItem className="logOutBtn-Menu" icon={ <MdLogout onClick={(e) => { onLogOut() }} style={{ color: "#000", fontSize: "1.3em" }} /> }>
                                 <Button className="logOutBtn-Menu" onClick={(e) => { onLogOut() }}>Logout</Button>
                             </MenuItem>
                         </Menu>

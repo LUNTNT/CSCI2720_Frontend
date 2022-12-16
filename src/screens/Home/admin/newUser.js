@@ -37,8 +37,9 @@ const NewUser = () => {
                 body: body
             }
         )
-        .then((res) => {
-            document.getElementById('notiPanel').innerHTML = 'Created';
+        .then((res) => res.text())
+        .then((data) => {
+            document.getElementById('notiPanel').innerHTML = 'Created.';
         })
     }
 
