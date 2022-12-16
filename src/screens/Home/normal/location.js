@@ -130,15 +130,16 @@ const Location = () => {
 
     // get all favourites based on user
     useEffect(() => {
-        fetch(`http://18.209.252.141:13000/user/favouriteVenues/${uID}`)
-            .then((res) => res.json())
-            .then((data) => {
-                for (var i = 0; i < data[0].favouriteVenues.length; i++) {
-                    if (data[0].favouriteVenues[i].id == id) {
-                        setFavourite(true)
-                    }
+        var uid = localStorage.getItem('userid')
+        fetch(`http://18.209.252.141:13000/user/favouriteVenues/${uid}`)
+        .then((res) => res.json())
+        .then((data) => {
+            for (var i = 0; i < data[0].favouriteVenues.length; i++) {
+                if (data[0].favouriteVenues[i].id == id) {
+                    setFavourite(true)
                 }
-            })
+            }
+        })
     }, [])
 
     if (!isLoaded) return <div>Loading...</div>;
