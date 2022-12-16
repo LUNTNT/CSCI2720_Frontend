@@ -11,6 +11,8 @@ import {
     MenuItem,
     SidebarHeader
 } from 'react-pro-sidebar';
+import { useNavigate } from "react-router-dom"
+
 
 const AdminLayout = ({
     collapsed,
@@ -18,40 +20,46 @@ const AdminLayout = ({
     handleCollapseChange,
     handleToggleSidebar
 }) => {
+        const navigate = useNavigate()
 
-    return (
-        <>
-            <ProSidebar
-                collapsed={collapsed}
-                toggled={toggled}
-                onToggle={handleToggleSidebar}
-                breakPoint="md"
-            >
-                <SidebarHeader>
-                    {collapsed ? 
-                    <Button 
-                        className="menuCollapseBtn"
-                        onClick={handleCollapseChange}
-                    ><AiOutlineMenuUnfold /></Button> : 
-                    <Button 
-                        className="menuCollapseBtn"
-                        onClick={handleCollapseChange}
-                    ><AiOutlineMenuFold /></Button>}
-                </SidebarHeader>
-                <SidebarContent>
-                    <Menu>
-                        <MenuItem>
-                            <Link to="/admin/event">Event</Link>
-                        </MenuItem>
-                        <MenuItem>
-                            <Link to="/admin/user">User</Link>
-                        </MenuItem>
-                    </Menu>
-                </SidebarContent>
-            </ProSidebar>
-            <Button className="logOutBtn">Logout</Button>
-        </>
-    )
-}
+        const onLogOut = () => {
+            console.log("Attempted to log out")
+            // localStorage.removeItem('authenticated')
+            navigate('/login/admin', { replace: true })
+        }
+        return (
+            <>
+                <ProSidebar
+                    collapsed={collapsed}
+                    toggled={toggled}
+                    onToggle={handleToggleSidebar}
+                    breakPoint="md"
+                >
+                    <SidebarHeader>
+                        {collapsed ?
+                            <Button
+                                className="menuCollapseBtn"
+                                onClick={handleCollapseChange}
+                            ><AiOutlineMenuUnfold /></Button> :
+                            <Button
+                                className="menuCollapseBtn"
+                                onClick={handleCollapseChange}
+                            ><AiOutlineMenuFold /></Button>}
+                    </SidebarHeader>
+                    <SidebarContent>
+                        <Menu>
+                            <MenuItem>
+                                <Link to="/admin/event">Event</Link>
+                            </MenuItem>
+                            <MenuItem>
+                                <Link to="/admin/user">User</Link>
+                            </MenuItem>
+                        </Menu>
+                    </SidebarContent>
+                </ProSidebar>
+                <Button className="logOutBtn" onClick={(e) => { onLogOut() }}>Logout</Button>
+            </>
+        )
+    }
 
 export default AdminLayout;
