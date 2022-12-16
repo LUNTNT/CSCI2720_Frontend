@@ -57,7 +57,7 @@ const Location = () => {
         // if (data.ok) {
         // }
         // refresh page
-        // window.location.reload(false)
+        window.location.reload(false)
         handleCloseCommentBox();
     }
 

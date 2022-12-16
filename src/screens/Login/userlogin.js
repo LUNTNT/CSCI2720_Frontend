@@ -10,25 +10,31 @@ const UserLogin = () => {
 
     const onLogin = () => {
         console.log("Attempted to login")
+        var body = new URLSearchParams()
+        body.append("username", username)
+        body.append("password", password)
+        console.log(body)
+
         fetch(`http://18.209.252.141:13000/user/login`, {
 			method: 'POST',
             mode: 'cors',
 			headers: {
 				'Content-Type': 'application/x-www-form-urlencoded',
 			},
-			body: {
-                username: username,
-                password: password
-            }
+			body: body
 		})
-        .then((res) => console.log(res))
-        // console.log(response)
+        .then((res) => {
+            console.log(res)
+            navigate('/dashboard', {replace: true})
+
+        })
+
         // if(response.ok){
-            // response.json()
-            // .then(response=>localStorage.setItem('jwt', response.accessToken)).catch(err=>console.log(err))
-        // .then((res) => {
+        // //     response.json()
+        // //     .then(response=>localStorage.setItem('jwt', response.accessToken)).catch(err=>console.log(err))
+        // // .then((res) => {
         //     navigate('/dashboard', {replace: true})
-        // })
+        // // })
         // }
     
 		// const data = await response.json()

@@ -11,28 +11,24 @@ const AdminLogin = () => {
     
     const onLogin = async () =>{
         console.log("Attempted to login")
-        const response = await fetch('http://3.84.124.228:13000/user/login/admin', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({
-                "username": username,
-                "password": password
-			}),
-		})
+        var body = new URLSearchParams()
+        body.append("username", username)
+        body.append("password", password)
+        console.log(body)
 
-		const data = await response.json()
-        console.log(data)
-		if (data.user) 
-        {
-			localStorage.setItem('authenticated', data.user)
-			alert('Login successful')
+        fetch(`http://18.209.252.141:13000/user/login/admin`, {
+			method: 'POST',
+            mode: 'cors',
+			headers: {
+				'Content-Type': 'application/x-www-form-urlencoded',
+			},
+			body: body
+		})
+        .then((res) => {
+            console.log(res)
             navigate('/admin', {replace: true})
-		} 
-        else {
-			alert('Please check your username and password')
-		}
+
+        })
 
     }
 
