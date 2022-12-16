@@ -102,6 +102,7 @@ const UpdateEvent = () => {
                             </Button>
                         </form>
                     </div>
+                    <div id="notiPanel"></div>
                 </div>
             </div>
         </>
