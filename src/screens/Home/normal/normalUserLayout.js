@@ -22,6 +22,8 @@ const NormalUserLayout = () => {
         console.log("Attempted to log out")
         localStorage.removeItem('username')
         localStorage.removeItem('userid')
+        localStorage.removeItem("myToken")
+
         navigate('/login/user', { replace: true })
     }
 

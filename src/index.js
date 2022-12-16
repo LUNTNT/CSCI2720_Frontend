@@ -1,12 +1,12 @@
 import ReactDOM from "react-dom/client";
 import React from 'react';
 import {
-  BrowserRouter,
+  BrowserRouter as Router,
   Routes,
   Route,
-  Link,
-  Redirect,
-  Navigate
+  Switch,
+  Navigate,
+  Outlet 
 } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UserLogin from './screens/Login/userlogin'
@@ -20,35 +20,66 @@ import NewEvent from "./screens/Home/admin/newEvent"
 import UpdateUser from "./screens/Home/admin/updateUser"
 import UpdateEvent from "./screens/Home/admin/updateEvent"
 import FavLocList from "./screens/Home/normal/favLocList";
+import { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom"
 
 
-export default function App() {
+const App = () => {
+
+  const PrivateRoute = () => {
+    const token = localStorage.getItem("myToken");
+    return token ? (
+      <Outlet />
+    ) : (
+      <Navigate
+        to={{
+          pathname: "/login/user"
+        }}
+      />
+    );
+  };
+
+  // const PublicRoute = (props) => {
+  //   const token = localStorage.getItem("myToken");
+
+  //   return token ? (
+  //     <Navigate to={{ pathname: "/main" }} />
+  //   ) : (
+  //     <Route {...props} />
+  //   );
+  // };
   return (
 
-    <BrowserRouter>
+    <Router>
 
       <Routes>
         {/* add path here */}
         {/* first page is login, so add "index" */}
-        <Route path="/" index element={<Navigate to="/login/user" />} />
-        <Route path="/login/user" index element={<UserLogin/>} />
-        <Route path="/login/admin" index element={<AdminLogin/>} />
 
-        <Route path="/admin" element={<Admin/>}/>
-        <Route path="/admin/event" element={<Admin/>}/>
-        <Route path="/admin/user" element={<Admin/>}/>
-        <Route path="/admin/newUser" element={<NewUser/>}/>
-        <Route path="/admin/newEvent" element={<NewEvent/>}/>
-        <Route path="/admin/updateUser/:id" element={<UpdateUser/>}/>
-        <Route path="/admin/updateEvent/:id" element={<UpdateEvent/>}/>
+          <Route path="/" index element={<Navigate to="/login/user" />} />
+          <Route path="/login/user" index element={<UserLogin />} />
+          <Route path="/login/admin" index element={<AdminLogin />} />
 
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/dashboard/location/:id" element={<Location />} />
-        <Route path="/allevent" element={<EventMap />} />
-        <Route path="/dashboard/favloc" element={<FavLocList/>}/>
+          <Route exact path='/' element={<PrivateRoute/>}>
+            <Route path="/admin" element={<Admin />} />
+            <Route path="/admin/event" element={<Admin />} />
+            <Route path="/admin/user" element={<Admin />} />
+            <Route path="/admin/newUser" element={<NewUser />} />
+            <Route path="/admin/newEvent" element={<NewEvent />} />
+            <Route path="/admin/updateUser/:id" element={<UpdateUser />} />
+            <Route path="/admin/updateEvent/:id" element={<UpdateEvent />} />
+
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/dashboard/location/:id" element={<Location />} />
+            <Route path="/allevent" element={<EventMap />} />
+            <Route path="/dashboard/favloc" element={<FavLocList />} />
+          </Route>
+
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
+export default App;
+
 const root = ReactDOM.createRoot(document.querySelector('#app'));
 root.render(<App />);

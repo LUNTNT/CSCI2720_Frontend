@@ -29,6 +29,7 @@ const AdminLayout = ({
             console.log("Attempted to log out")
             localStorage.removeItem('username')
             localStorage.removeItem('userid')            
+            localStorage.removeItem('myToken')            
             navigate('/login/admin', { replace: true })
         }
         return (
