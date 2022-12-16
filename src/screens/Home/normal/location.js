@@ -27,6 +27,8 @@ const Location = () => {
     const [commentList, setCommentList] = useState([]);
     const [favouriteList, setFavoriteList] = useState([]);
 
+    const [uID, setUID] = useState("")
+
     const [marker, setMarker] = useState({lat: 0, lng: 0});
     // const [coordinate, setCoordinate] = useState
     const { isLoaded } = useLoadScript({
@@ -36,6 +38,9 @@ const Location = () => {
     const handleCloseCommentBox = () => setShowCommentBox(false);
     const handleShowCommentBox = () => setShowCommentBox(true);
 
+    useEffect(() => {
+        setUID(localStorage.getItem('userid'))
+    }, [])
 
     const handleSubmitComment = () => {
         // const jwt = localStorage.getItem('jwt')
@@ -43,7 +48,7 @@ const Location = () => {
         var body = new URLSearchParams()
         body.append("content", comment)
 
-        fetch(`http://18.209.252.141:13000/comment/3/${id}`, {
+        fetch(`http://18.209.252.141:13000/comment/${uID}/${id}`, {
             method: 'POST',
             mode: 'cors',
             headers: {
@@ -66,7 +71,7 @@ const Location = () => {
      */
 
     const handleAddFavourite = () => {
-        fetch(`http://18.209.252.141:13000/user/favouriteVenues/3/${id}`, {
+        fetch(`http://18.209.252.141:13000/user/favouriteVenues/${uID}/${id}`, {
             method: 'POST',
             mode: 'cors'
         })
@@ -76,7 +81,7 @@ const Location = () => {
     }
 
     const handleDeleteFavourite = () => {
-        fetch(`http://18.209.252.141:13000/user/favouriteVenues/3/${id}`, {
+        fetch(`http://18.209.252.141:13000/user/favouriteVenues/${uID}/${id}`, {
             method: 'DELETE',
             mode: 'cors'
         })
@@ -125,7 +130,7 @@ const Location = () => {
 
     // get all favourites based on user
     useEffect(() => {
-        fetch(`http://18.209.252.141:13000/user/favouriteVenues/3`)
+        fetch(`http://18.209.252.141:13000/user/favouriteVenues/${uID}`)
             .then((res) => res.json())
             .then((data) => {
                 for (var i = 0; i < data[0].favouriteVenues.length; i++) {

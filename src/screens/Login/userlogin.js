@@ -23,10 +23,19 @@ const UserLogin = () => {
 			},
 			body: body
 		})
-        .then((res) => {
-            console.log(res)
-            navigate('/dashboard', {replace: true})
+        .then((response) => {
+            if (response.ok) {
+                return response.json()
+            }
 
+        })
+        .then (data => {
+            if (data) {
+                console.log(data)
+                localStorage.setItem("userid", data.userId)
+                localStorage.setItem("username", data.username)
+                navigate('/dashboard', {replace: true})
+            }
         })
 
         // if(response.ok){

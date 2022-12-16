@@ -14,12 +14,9 @@ const NormalUserLayout = () => {
     const [currentUsername, setCurrentUsername] = useState("")
 
     useEffect(()=>{
-        fetch(`http://18.209.252.141:13000/user`)
-        .then(res => res.text())
-        .then((data) => {
-            setCurrentUsername(data)
-        })
+        setCurrentUsername(localStorage.getItem('username'))
     }, [])
+
 
     const onLogOut = () => {
         console.log("Attempted to log out")
